@@ -424,6 +424,12 @@
   .cart-toast.show { transform: none; }
 }
 
+/* ----------- Footer logo: deepen so the foil reads on cream ----------- */
+.footer-brand .logo-mark,
+footer .logo-mark.footer-size {
+  filter: brightness(0.62) saturate(1.35) contrast(1.06);
+}
+
 /* ----------- Grain overlay utility ----------- */
 .grain-overlay {
   position: fixed;
