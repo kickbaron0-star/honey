@@ -671,13 +671,18 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 <nav class="site-nav">
   <a href="shop.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
   <div class="checkout-step-indicator">
-    <span class="step">Cellar</span>
+    <span class="step" data-i18n="checkout.step.cellar">Cellar</span>
     <span class="sep"></span>
-    <span class="step active">Checkout</span>
+    <span class="step active" data-i18n="checkout.step.checkout">Checkout</span>
     <span class="sep"></span>
-    <span class="step">Confirmation</span>
+    <span class="step" data-i18n="checkout.step.confirmation">Confirmation</span>
   </div>
-  <a href="contact.html" class="secure-link">Secure Checkout</a>
+  <div style="display:flex; align-items:center; gap:24px;">
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button>
+    </div>
+    <a href="contact.html" class="secure-link" data-i18n="nav.secureCheckout">Secure Checkout</a>
+  </div>
 </nav>
 
 <!-- Cart drawer (kept for parity) -->
@@ -685,17 +690,17 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   <div class="cart-backdrop"></div>
   <aside class="cart-panel">
     <header class="cart-head">
-      <span class="cart-title">Your <em>Cellar</em></span>
-      <button class="cart-close" aria-label="Close">Close <span class="x"></span></button>
+      <span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>
+      <button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>
     </header>
     <div class="cart-items" id="cartItems"></div>
     <footer class="cart-foot">
       <div class="cart-totals">
-        <span class="label">Subtotal</span>
+        <span class="label" data-i18n="cart.subtotal">Subtotal</span>
         <span class="total" id="cartTotal">€0</span>
       </div>
-      <p class="cart-note">Shipping calculated below. Complimentary across the EU above €120.</p>
-      <a href="checkout.html" class="cart-checkout">Continue to checkout <span class="arrow"></span></a>
+      <p class="cart-note" data-i18n="cart.note">Shipping calculated below. Complimentary across the EU above €120.</p>
+      <a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>
     </footer>
   </aside>
 </div>
@@ -704,9 +709,9 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
   <!-- ============ Main / Form ============ -->
   <main class="checkout-main">
-    <div class="ck-eyebrow">Checkout &middot; Edition I</div>
-    <h1 class="ck-headline">A quiet, <em>careful</em> handover.</h1>
-    <p class="ck-sub">Three steps. Numbered, sealed, shipped from Pelion within the week.</p>
+    <div class="ck-eyebrow" data-i18n="checkout.eyebrow">Checkout &middot; Edition I</div>
+    <h1 class="ck-headline" data-i18n-html="checkout.headline_html">A quiet, <em>careful</em> handover.</h1>
+    <p class="ck-sub" data-i18n="checkout.sub">Three steps. Numbered, sealed, shipped from Pelion within the week.</p>
 
     <!-- Express -->
     <section class="express-pay">
@@ -719,19 +724,19 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
           <span style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.02em;">G&nbsp;Pay</span>
         </button>
       </div>
-      <div class="express-divider">Or pay with card</div>
+      <div class="express-divider" data-i18n="checkout.express.divider">Or pay with card</div>
     </section>
 
     <!-- Step 1: Contact -->
     <section class="step-block">
-      <div class="step-num"><span class="roman">I</span><h3>Contact &middot; <em>where to write back.</em></h3></div>
+      <div class="step-num"><span class="roman">I</span><h3 data-i18n-html="checkout.step1.h_html">Contact &middot; <em>where to write back.</em></h3></div>
       <div class="field-row">
         <div class="field">
-          <label>Email</label>
+          <label data-i18n="checkout.label.email">Email</label>
           <input type="email" placeholder="maria@example.com" required>
         </div>
         <div class="field">
-          <label>Telephone</label>
+          <label data-i18n="checkout.label.phone">Telephone</label>
           <input type="tel" placeholder="+30 24210 882 14">
         </div>
       </div>
@@ -739,28 +744,29 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
     <!-- Step 2: Shipping -->
     <section class="step-block">
-      <div class="step-num"><span class="roman">II</span><h3>Shipping &middot; <em>the address.</em></h3></div>
+      <div class="step-num"><span class="roman">II</span><h3 data-i18n-html="checkout.step2.h_html">Shipping &middot; <em>the address.</em></h3></div>
       <div class="field-row">
-        <div class="field"><label>First name</label><input type="text" placeholder="Maria"></div>
-        <div class="field"><label>Last name</label><input type="text" placeholder="Andreou"></div>
+        <div class="field"><label data-i18n="checkout.label.first">First name</label><input type="text" placeholder="Maria"></div>
+        <div class="field"><label data-i18n="checkout.label.last">Last name</label><input type="text" placeholder="Andreou"></div>
       </div>
       <div class="field">
-        <label>Address line 1</label>
-        <input type="text" placeholder="House number, street">
+        <label data-i18n="checkout.label.addr1">Address line 1</label>
+        <input type="text" data-i18n-attr="placeholder:checkout.label.addr1Ph" placeholder="House number, street">
       </div>
       <div class="field">
-        <label>Address line 2 — optional</label>
-        <input type="text" placeholder="Apartment, building, floor">
+        <label data-i18n="checkout.label.addr2">Address line 2 — optional</label>
+        <input type="text" data-i18n-attr="placeholder:checkout.label.addr2Ph" placeholder="Apartment, building, floor">
       </div>
       <div class="field-row three">
-        <div class="field"><label>City</label><input type="text" placeholder="Volos"></div>
-        <div class="field"><label>Postcode</label><input type="text" placeholder="37006"></div>
-        <div class="field"><label>Country</label>
+        <div class="field"><label data-i18n="checkout.label.city">City</label><input type="text" placeholder="Volos"></div>
+        <div class="field"><label data-i18n="checkout.label.postcode">Postcode</label><input type="text" placeholder="37006"></div>
+        <div class="field"><label data-i18n="checkout.label.country">Country</label>
           <select>
             <option>Greece</option>
             <option>Italy</option>
             <option>France</option>
             <option>Germany</option>
+            <option>Netherlands</option>
             <option>United Kingdom</option>
             <option>United States</option>
             <option>Switzerland</option>
@@ -774,24 +780,24 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
         <div class="ship-opt active" data-ship="standard" data-price="9">
           <div class="radio"></div>
           <div>
-            <div class="title">Standard &middot; tracked</div>
-            <div class="sub">5 — 8 business days, signed delivery</div>
+            <div class="title" data-i18n="checkout.ship.standard.title">Standard &middot; tracked</div>
+            <div class="sub" data-i18n="checkout.ship.standard.sub">5 — 8 business days, signed delivery</div>
           </div>
           <div class="price">€9</div>
         </div>
         <div class="ship-opt" data-ship="express" data-price="22">
           <div class="radio"></div>
           <div>
-            <div class="title">Express &middot; courier</div>
-            <div class="sub">2 — 3 business days, hand delivered</div>
+            <div class="title" data-i18n="checkout.ship.express.title">Express &middot; courier</div>
+            <div class="sub" data-i18n="checkout.ship.express.sub">2 — 3 business days, hand delivered</div>
           </div>
           <div class="price">€22</div>
         </div>
         <div class="ship-opt" data-ship="international" data-price="38">
           <div class="radio"></div>
           <div>
-            <div class="title">International &middot; outside EU</div>
-            <div class="sub">7 — 12 business days, taxes prepaid</div>
+            <div class="title" data-i18n="checkout.ship.intl.title">International &middot; outside EU</div>
+            <div class="sub" data-i18n="checkout.ship.intl.sub">7 — 12 business days, taxes prepaid</div>
           </div>
           <div class="price">€38</div>
         </div>
@@ -800,64 +806,64 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
     <!-- Step 3: Payment -->
     <section class="step-block">
-      <div class="step-num"><span class="roman">III</span><h3>Payment &middot; <em>quietly secure.</em></h3></div>
+      <div class="step-num"><span class="roman">III</span><h3 data-i18n-html="checkout.step3.h_html">Payment &middot; <em>quietly secure.</em></h3></div>
 
       <div class="pay-tabs">
-        <button class="pay-tab active">Card</button>
-        <button class="pay-tab">Bank transfer</button>
-        <button class="pay-tab">Klarna</button>
+        <button class="pay-tab active" data-i18n="checkout.tab.card">Card</button>
+        <button class="pay-tab" data-i18n="checkout.tab.bank">Bank transfer</button>
+        <button class="pay-tab" data-i18n="checkout.tab.klarna">Klarna</button>
       </div>
 
-      <div class="field"><label>Card number</label><input type="text" placeholder="•••• •••• •••• 8214"></div>
+      <div class="field"><label data-i18n="checkout.label.cardNumber">Card number</label><input type="text" placeholder="•••• •••• •••• 8214"></div>
       <div class="field-row three">
-        <div class="field"><label>Name on card</label><input type="text" placeholder="Maria Andreou"></div>
-        <div class="field"><label>Expiry</label><input type="text" placeholder="04 / 28"></div>
-        <div class="field"><label>CVC</label><input type="text" placeholder="•••"></div>
+        <div class="field"><label data-i18n="checkout.label.cardName">Name on card</label><input type="text" placeholder="Maria Andreou"></div>
+        <div class="field"><label data-i18n="checkout.label.expiry">Expiry</label><input type="text" placeholder="04 / 28"></div>
+        <div class="field"><label data-i18n="checkout.label.cvc">CVC</label><input type="text" placeholder="•••"></div>
       </div>
 
       <div class="stripe-note">
         <span class="pill">Stripe ready</span>
-        <span>Encrypted and processed end-to-end. We never see or store your card.</span>
+        <span data-i18n="checkout.stripeNote">Encrypted and processed end-to-end. We never see or store your card.</span>
       </div>
     </section>
 
     <!-- Confirm -->
     <div class="confirm-block">
       <button class="confirm-btn" type="button" onclick="alert('Demo checkout. In production this hands over to Stripe.');">
-        Confirm order <span class="arrow"></span>
+        <span data-i18n="checkout.confirm">Confirm order</span> <span class="arrow"></span>
       </button>
-      <p class="terms">By placing this order you agree to our <a href="#">terms</a> and <a href="#">privacy</a>. International orders may carry local duties.</p>
+      <p class="terms" data-i18n-html="checkout.terms_html">By placing this order you agree to our <a href="#">terms</a> and <a href="#">privacy</a>. International orders may carry local duties.</p>
     </div>
   </main>
 
   <!-- ============ Side / Summary ============ -->
   <aside class="checkout-side">
-    <div class="side-eyebrow">Your cellar</div>
-    <h2 class="side-title">Order <em>summary</em></h2>
+    <div class="side-eyebrow" data-i18n="checkout.side.eyebrow">Your cellar</div>
+    <h2 class="side-title" data-i18n-html="checkout.side.title_html">Order <em>summary</em></h2>
 
     <div id="checkoutSummary"></div>
 
     <div class="packaging-card">
-      <h5>Luxury packaging</h5>
-      <h4>Sealed in <em>wax.</em> Boxed in oak veneer.</h4>
-      <p>Each jar is wrapped by hand, sealed with black wax, and laid in an oak-veneered presentation box. A handwritten card travels with the order.</p>
+      <h5 data-i18n="checkout.package.lbl">Luxury packaging</h5>
+      <h4 data-i18n-html="checkout.package.h_html">Sealed in <em>wax.</em> Boxed in oak veneer.</h4>
+      <p data-i18n="checkout.package.p">Each jar is wrapped by hand, sealed with black wax, and laid in an oak-veneered presentation box. A handwritten card travels with the order.</p>
       <div class="box-render">
-        <div class="box-tag">Edition I &middot; 2025 Harvest</div>
+        <div class="box-tag" data-i18n="checkout.package.tag">Edition I &middot; 2025 Harvest</div>
       </div>
     </div>
 
     <div class="trust-strip">
       <div class="trust-cell">
         <div class="ico">Σ</div>
-        <div class="lbl">Stripe<br>encrypted</div>
+        <div class="lbl"><span data-i18n="checkout.trust.stripe1">Stripe</span><br><span data-i18n="checkout.trust.stripe2">encrypted</span></div>
       </div>
       <div class="trust-cell">
         <div class="ico">⌖</div>
-        <div class="lbl">International<br>shipping</div>
+        <div class="lbl"><span data-i18n="checkout.trust.intl1">International</span><br><span data-i18n="checkout.trust.intl2">shipping</span></div>
       </div>
       <div class="trust-cell">
         <div class="ico">⌬</div>
-        <div class="lbl">Sealed in<br>Pelion</div>
+        <div class="lbl"><span data-i18n="checkout.trust.sealed1">Sealed in</span><br><span data-i18n="checkout.trust.sealed2">Pelion</span></div>
       </div>
     </div>
   </aside>

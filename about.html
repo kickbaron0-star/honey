@@ -486,10 +486,13 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <nav class="site-nav">
   <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
   <div class="nav-right">
-    <button class="menu-btn" id="menuBtn"><span class="lines"></span>Menu</button>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button>
+    </div>
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
     <button class="nav-cart" id="navCart" aria-label="Open cart">
       <span class="cart-glyph"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/><path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg></span>
-      Cellar
+      <span data-i18n="nav.cellar">Cellar</span>
       <span class="cart-count">0</span>
     </button>
   </div>
@@ -498,19 +501,19 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
   <div class="menu-top">
     <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
-    <button class="menu-close" id="menuClose">Close <span class="x"></span></button>
+    <button class="menu-close" id="menuClose"><span data-i18n="menu.close">Close</span> <span class="x"></span></button>
   </div>
   <div class="menu-content">
     <ol class="menu-items">
-      <li><span class="roman">I</span><a href="shop.html">The <em>Collection</em></a><span class="sub">All editions</span></li>
-      <li><span class="roman">II</span><a href="about.html">The <em>Origin</em></a><span class="sub">Pelion · Greece</span></li>
-      <li><span class="roman">III</span><a href="index.html#process">The <em>Process</em></a><span class="sub">Hand harvested</span></li>
-      <li><span class="roman">IV</span><a href="index.html#journal">The <em>Journal</em></a><span class="sub">Field notes</span></li>
-      <li><span class="roman">V</span><a href="contact.html">Contact</a><span class="sub">Trade &amp; press</span></li>
+      <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
+      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
+      <li><span class="roman">III</span><a href="index.html#process" data-i18n-html="menu.item.process_html">The <em>Process</em></a><span class="sub" data-i18n="menu.item.process_sub">Hand harvested</span></li>
+      <li><span class="roman">IV</span><a href="index.html#journal" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
     </ol>
     <aside class="menu-side">
-      <h5>Visit the estate</h5>
-      <p>By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <h5 data-i18n="menu.estate.h">Visit the estate</h5>
+      <p data-i18n="menu.estate.p">By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
       <div class="contact">
         <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a><br>
         +30 24210 882 14<br>Pelion, 37006 &middot; Greece
@@ -518,8 +521,8 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     </aside>
   </div>
   <div class="menu-bottom">
-    <span>© Harvest Deli MMXXV</span>
-    <div class="social"><a href="#">Instagram</a><a href="#">Journal</a><a href="#">Wholesale</a></div>
+    <span data-i18n="menu.copyright">© Harvest Deli MMXXV</span>
+    <div class="social"><a href="#" data-i18n="menu.social.instagram">Instagram</a><a href="#" data-i18n="menu.social.journal">Journal</a><a href="#" data-i18n="menu.social.wholesale">Wholesale</a></div>
   </div>
 </div>
 
@@ -528,28 +531,28 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   <div class="cart-backdrop"></div>
   <aside class="cart-panel">
     <header class="cart-head">
-      <span class="cart-title">Your <em>Cellar</em></span>
-      <button class="cart-close" aria-label="Close">Close <span class="x"></span></button>
+      <span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>
+      <button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>
     </header>
     <div class="cart-items" id="cartItems"></div>
     <footer class="cart-foot">
       <div class="cart-totals">
-        <span class="label">Subtotal</span>
+        <span class="label" data-i18n="cart.subtotal">Subtotal</span>
         <span class="total" id="cartTotal">€0</span>
       </div>
-      <p class="cart-note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
-      <a href="checkout.html" class="cart-checkout">Continue to checkout <span class="arrow"></span></a>
+      <p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
+      <a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>
     </footer>
   </aside>
 </div>
 
 <!-- ============ Hero ============ -->
 <section class="about-hero">
-  <div class="about-eyebrow">The Origin &middot; A house in Pelion</div>
-  <h1 class="about-headline">A journey into the <em>origin.</em></h1>
-  <p class="about-intro">Five generations of one family, working a thousand hives across a single mountain. The honey is the result. This is the story behind the jar.</p>
+  <div class="about-eyebrow" data-i18n="about.eyebrow">The Origin &middot; A house in Pelion</div>
+  <h1 class="about-headline" data-i18n-html="about.headline_html">A journey into the <em>origin.</em></h1>
+  <p class="about-intro" data-i18n="about.intro">Five generations of one family, working a thousand hives across a single mountain. The honey is the result. This is the story behind the jar.</p>
   <div class="about-frame">
-    <span class="caption">Mount Pelion &middot; Northern Greece</span>
+    <span class="caption" data-i18n="about.frameCaption">Mount Pelion &middot; Northern Greece</span>
   </div>
 </section>
 
@@ -557,35 +560,35 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <section class="chapter-section left">
   <div class="ch-text reveal">
     <div class="ch-num">I.</div>
-    <div class="ch-eyebrow">Greece &middot; The land</div>
-    <h2 class="ch-heading">A mountain that the sea cannot reach.</h2>
-    <p class="ch-body">Pelion rises six hundred metres from the Aegean coast in a single, slow gesture. Its limestone ridges hold wild thyme, heather, oregano, arbutus and chestnut in a single, untranslatable season. We work the southern face, where the sun arrives early and the air keeps its dryness through the afternoon.</p>
-    <p class="ch-body">Nothing here is cultivated. The bees decide where to forage, and the season decides what they bring back.</p>
+    <div class="ch-eyebrow" data-i18n="about.ch1.eyebrow">Greece &middot; The land</div>
+    <h2 class="ch-heading" data-i18n="about.ch1.h">A mountain that the sea cannot reach.</h2>
+    <p class="ch-body" data-i18n="about.ch1.p1">Pelion rises six hundred metres from the Aegean coast in a single, slow gesture. Its limestone ridges hold wild thyme, heather, oregano, arbutus and chestnut in a single, untranslatable season. We work the southern face, where the sun arrives early and the air keeps its dryness through the afternoon.</p>
+    <p class="ch-body" data-i18n="about.ch1.p2">Nothing here is cultivated. The bees decide where to forage, and the season decides what they bring back.</p>
   </div>
   <div class="ch-image tone-1 reveal delay-1">
-    <span class="caption">Pelion ridges &middot; 1100m</span>
+    <span class="caption" data-i18n="about.ch1.caption">Pelion ridges &middot; 1100m</span>
   </div>
 </section>
 
 <!-- ============ Pull quote ============ -->
 <section class="pull-quote">
   <div class="reveal">
-    <blockquote>"My grandfather kept thirty hives. My father, three hundred. I keep a thousand, and yet, less."</blockquote>
-    <cite>Stavros Andreou &middot; Beekeeper, fifth generation</cite>
+    <blockquote data-i18n="about.quote.text">"My grandfather kept thirty hives. My father, three hundred. I keep a thousand, and yet, less."</blockquote>
+    <cite data-i18n="about.quote.cite">Stavros Andreou &middot; Beekeeper, fifth generation</cite>
   </div>
 </section>
 
 <!-- ============ Chapter 2 ============ -->
 <section class="chapter-section right">
   <div class="ch-image tone-2 reveal">
-    <span class="caption">The cellar &middot; oak vats</span>
+    <span class="caption" data-i18n="about.ch2.caption">The cellar &middot; oak vats</span>
   </div>
   <div class="ch-text reveal delay-1">
     <div class="ch-num">II.</div>
-    <div class="ch-eyebrow">The beekeeper</div>
-    <h2 class="ch-heading">Stavros, who learned to listen.</h2>
-    <p class="ch-body">Stavros Andreou is the fifth generation of his family to keep bees on this mountain. He inherited the cellar from his father in 2009, and the manuscripts of his great-grandfather sit on a shelf above the vats, recording temperatures and yields back to 1882.</p>
-    <p class="ch-body">He works alone for ten months of the year. Two younger nephews join him for the harvest. The bees, he says, taught the family more than the family ever taught the bees.</p>
+    <div class="ch-eyebrow" data-i18n="about.ch2.eyebrow">The beekeeper</div>
+    <h2 class="ch-heading" data-i18n="about.ch2.h">Stavros, who learned to listen.</h2>
+    <p class="ch-body" data-i18n="about.ch2.p1">Stavros Andreou is the fifth generation of his family to keep bees on this mountain. He inherited the cellar from his father in 2009, and the manuscripts of his great-grandfather sit on a shelf above the vats, recording temperatures and yields back to 1882.</p>
+    <p class="ch-body" data-i18n="about.ch2.p2">He works alone for ten months of the year. Two younger nephews join him for the harvest. The bees, he says, taught the family more than the family ever taught the bees.</p>
   </div>
 </section>
 
@@ -593,13 +596,13 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <section class="chapter-section left">
   <div class="ch-text reveal">
     <div class="ch-num">III.</div>
-    <div class="ch-eyebrow">The mountains</div>
-    <h2 class="ch-heading">The hives are placed where the road ends.</h2>
-    <p class="ch-body">Each apiary sits between 600 and 1400 metres on the southern slopes. Never near a road. Never near a cultivated field. The walk to the highest hives takes a full morning, and we take care not to disturb the bees more than a season requires.</p>
-    <p class="ch-body">Altitude shapes the honey more than any single flower. The colder nights slow the bees. The honey thickens. The character deepens.</p>
+    <div class="ch-eyebrow" data-i18n="about.ch3.eyebrow">The mountains</div>
+    <h2 class="ch-heading" data-i18n="about.ch3.h">The hives are placed where the road ends.</h2>
+    <p class="ch-body" data-i18n="about.ch3.p1">Each apiary sits between 600 and 1400 metres on the southern slopes. Never near a road. Never near a cultivated field. The walk to the highest hives takes a full morning, and we take care not to disturb the bees more than a season requires.</p>
+    <p class="ch-body" data-i18n="about.ch3.p2">Altitude shapes the honey more than any single flower. The colder nights slow the bees. The honey thickens. The character deepens.</p>
   </div>
   <div class="ch-image tone-3 reveal delay-1">
-    <span class="caption">Hive №47 &middot; 1280m</span>
+    <span class="caption" data-i18n="about.ch3.caption">Hive №47 &middot; 1280m</span>
   </div>
 </section>
 
@@ -607,33 +610,33 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <section class="numbers-strip">
   <div class="n-cell reveal">
     <div class="n-value">1 <em>000</em></div>
-    <div class="n-label">Hives across the southern face of Pelion</div>
+    <div class="n-label" data-i18n="about.n1.lbl">Hives across the southern face of Pelion</div>
   </div>
   <div class="n-cell reveal delay-1">
     <div class="n-value">5</div>
-    <div class="n-label">Generations of one family on the mountain</div>
+    <div class="n-label" data-i18n="about.n2.lbl">Generations of one family on the mountain</div>
   </div>
   <div class="n-cell reveal delay-2">
     <div class="n-value">384</div>
-    <div class="n-label">Numbered jars in the Chestnut edition</div>
+    <div class="n-label" data-i18n="about.n3.lbl">Numbered jars in the Chestnut edition</div>
   </div>
   <div class="n-cell reveal">
     <div class="n-value">0</div>
-    <div class="n-label">Additives, ever. Raw honey, sealed in wax.</div>
+    <div class="n-label" data-i18n="about.n4.lbl">Additives, ever. Raw honey, sealed in wax.</div>
   </div>
 </section>
 
 <!-- ============ Chapter 4 ============ -->
 <section class="chapter-section right">
   <div class="ch-image tone-4 reveal">
-    <span class="caption">Harvest morning &middot; April</span>
+    <span class="caption" data-i18n="about.ch4.caption">Harvest morning &middot; April</span>
   </div>
   <div class="ch-text reveal delay-1">
     <div class="ch-num">IV.</div>
-    <div class="ch-eyebrow">The harvest</div>
-    <h2 class="ch-heading">Combs are spun cold, at cellar temperature.</h2>
-    <p class="ch-body">We never heat the honey. The combs travel down the mountain in shallow trays, are uncapped by hand, and are spun at the temperature of the cellar — sixteen degrees in spring, eighteen in summer. Every enzyme, every grain of pollen, every aromatic note of the season remains intact.</p>
-    <p class="ch-body">The honey then rests in oak vats for fourteen days. Air rises. Sediment falls. Nothing is forced.</p>
+    <div class="ch-eyebrow" data-i18n="about.ch4.eyebrow">The harvest</div>
+    <h2 class="ch-heading" data-i18n="about.ch4.h">Combs are spun cold, at cellar temperature.</h2>
+    <p class="ch-body" data-i18n="about.ch4.p1">We never heat the honey. The combs travel down the mountain in shallow trays, are uncapped by hand, and are spun at the temperature of the cellar. Sixteen degrees in spring, eighteen in summer. Every enzyme, every grain of pollen, every aromatic note of the season remains intact.</p>
+    <p class="ch-body" data-i18n="about.ch4.p2">The honey then rests in oak vats for fourteen days. Air rises. Sediment falls. Nothing is forced.</p>
   </div>
 </section>
 
@@ -641,54 +644,54 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <section class="chapter-section left">
   <div class="ch-text reveal">
     <div class="ch-num">V.</div>
-    <div class="ch-eyebrow">Family tradition</div>
-    <h2 class="ch-heading">A practice passed quietly between hands.</h2>
-    <p class="ch-body">Some of what we do has been done in the same way for five generations. Some of it changes every year. The bees keep us honest. The mountain keeps us small.</p>
-    <p class="ch-body">We do not scale. We do not blend. We do not strip the wax from the lids of the jars. Three hundred and eighty four jars in the Chestnut edition, and when they are gone, the season has ended.</p>
+    <div class="ch-eyebrow" data-i18n="about.ch5.eyebrow">Family tradition</div>
+    <h2 class="ch-heading" data-i18n="about.ch5.h">A practice passed quietly between hands.</h2>
+    <p class="ch-body" data-i18n="about.ch5.p1">Some of what we do has been done in the same way for five generations. Some of it changes every year. The bees keep us honest. The mountain keeps us small.</p>
+    <p class="ch-body" data-i18n="about.ch5.p2">We do not scale. We do not blend. We do not strip the wax from the lids of the jars. Three hundred and eighty four jars in the Chestnut edition, and when they are gone, the season has ended.</p>
   </div>
   <div class="ch-image tone-1 reveal delay-1">
-    <span class="caption">Cellar archive &middot; 1882 — 2025</span>
+    <span class="caption" data-i18n="about.ch5.caption">Cellar archive &middot; 1882 — 2025</span>
   </div>
 </section>
 
 <!-- ============ CTA ============ -->
 <section class="about-cta">
-  <div class="label">The Collection &middot; 2025</div>
-  <h2>Taste the <em>mountain.</em></h2>
-  <a href="shop.html" class="cta-link">View the collection <span class="arrow"></span></a>
+  <div class="label" data-i18n="about.cta.label">The Collection &middot; 2025</div>
+  <h2 data-i18n-html="about.cta.h_html">Taste the <em>mountain.</em></h2>
+  <a href="shop.html" class="cta-link"><span data-i18n="about.cta.btn">View the collection</span> <span class="arrow"></span></a>
 </section>
 
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
       <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
-      <p class="footer-tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
     </div>
     <div class="footer-col">
-      <h4>Collection</h4>
-      <a href="shop.html">All editions</a>
-      <a href="shop.html">Raw honey</a>
-      <a href="shop.html">Reserve</a>
-      <a href="shop.html">Gift sets</a>
+      <h4 data-i18n="footer.col.collection">Collection</h4>
+      <a href="shop.html" data-i18n="footer.link.allEditions">All editions</a>
+      <a href="shop.html" data-i18n="footer.link.rawHoney">Raw honey</a>
+      <a href="shop.html" data-i18n="footer.link.reserve">Reserve</a>
+      <a href="shop.html" data-i18n="footer.link.gift">Gift sets</a>
     </div>
     <div class="footer-col">
-      <h4>House</h4>
-      <a href="about.html">Origin</a>
-      <a href="index.html#process">Estate</a>
-      <a href="#">Journal</a>
-      <a href="contact.html">Contact</a>
+      <h4 data-i18n="footer.col.house">House</h4>
+      <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="index.html#process" data-i18n="footer.link.estate">Estate</a>
+      <a href="#" data-i18n="footer.link.journal">Journal</a>
+      <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4>Care</h4>
-      <a href="#">Shipping</a>
-      <a href="#">Sourcing</a>
-      <a href="contact.html">Trade</a>
-      <a href="contact.html">Press</a>
+      <h4 data-i18n="footer.col.care">Care</h4>
+      <a href="#" data-i18n="footer.link.shipping">Shipping</a>
+      <a href="#" data-i18n="footer.link.sourcing">Sourcing</a>
+      <a href="contact.html" data-i18n="footer.link.trade">Trade</a>
+      <a href="contact.html" data-i18n="footer.link.press">Press</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© Harvest Deli &middot; Pelion, Greece</span>
-    <span>Crafted slowly &middot; MMXXV</span>
+    <span data-i18n="footer.bottom1">© Harvest Deli &middot; Pelion, Greece</span>
+    <span data-i18n="footer.bottom2">Crafted slowly &middot; MMXXV</span>
   </div>
 </footer>
 

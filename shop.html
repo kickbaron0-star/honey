@@ -665,10 +665,13 @@ footer.site-footer {
     <svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg>
   </a>
   <div class="nav-right">
-    <button class="menu-btn" id="menuBtn"><span class="lines"></span>Menu</button>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button>
+    </div>
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
     <button class="nav-cart" id="navCart" aria-label="Open cart">
       <span class="cart-glyph"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/><path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg></span>
-      Cellar
+      <span data-i18n="nav.cellar">Cellar</span>
       <span class="cart-count">0</span>
     </button>
   </div>
@@ -678,19 +681,19 @@ footer.site-footer {
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
   <div class="menu-top">
     <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
-    <button class="menu-close" id="menuClose">Close <span class="x"></span></button>
+    <button class="menu-close" id="menuClose"><span data-i18n="menu.close">Close</span> <span class="x"></span></button>
   </div>
   <div class="menu-content">
     <ol class="menu-items">
-      <li><span class="roman">I</span><a href="shop.html">The <em>Collection</em></a><span class="sub">All editions</span></li>
-      <li><span class="roman">II</span><a href="about.html">The <em>Origin</em></a><span class="sub">Pelion · Greece</span></li>
-      <li><span class="roman">III</span><a href="index.html#process">The <em>Process</em></a><span class="sub">Hand harvested</span></li>
-      <li><span class="roman">IV</span><a href="index.html#journal">The <em>Journal</em></a><span class="sub">Field notes</span></li>
-      <li><span class="roman">V</span><a href="contact.html">Contact</a><span class="sub">Trade &amp; press</span></li>
+      <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
+      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
+      <li><span class="roman">III</span><a href="index.html#process" data-i18n-html="menu.item.process_html">The <em>Process</em></a><span class="sub" data-i18n="menu.item.process_sub">Hand harvested</span></li>
+      <li><span class="roman">IV</span><a href="index.html#journal" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
     </ol>
     <aside class="menu-side">
-      <h5>Visit the estate</h5>
-      <p>By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <h5 data-i18n="menu.estate.h">Visit the estate</h5>
+      <p data-i18n="menu.estate.p">By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
       <div class="contact">
         <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a><br>
         +30 24210 882 14<br>
@@ -699,64 +702,67 @@ footer.site-footer {
     </aside>
   </div>
   <div class="menu-bottom">
-    <span>© Harvest Deli MMXXV</span>
+    <span data-i18n="menu.copyright">© Harvest Deli MMXXV</span>
     <div class="social">
-      <a href="#">Instagram</a>
-      <a href="#">Journal</a>
-      <a href="#">Wholesale</a>
+      <a href="#" data-i18n="menu.social.instagram">Instagram</a>
+      <a href="#" data-i18n="menu.social.journal">Journal</a>
+      <a href="#" data-i18n="menu.social.wholesale">Wholesale</a>
     </div>
   </div>
 </div>
+
+<!-- Cart drawer -->
+<div class="cart-drawer-i18n-marker" style="display:none"></div>
 
 <!-- ============ Cart drawer ============ -->
 <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
   <div class="cart-backdrop"></div>
   <aside class="cart-panel">
     <header class="cart-head">
-      <span class="cart-title">Your <em>Cellar</em></span>
-      <button class="cart-close" aria-label="Close">Close <span class="x"></span></button>
+      <span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>
+      <button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>
     </header>
     <div class="cart-items" id="cartItems"></div>
     <footer class="cart-foot">
       <div class="cart-totals">
-        <span class="label">Subtotal</span>
+        <span class="label" data-i18n="cart.subtotal">Subtotal</span>
         <span class="total" id="cartTotal">€0</span>
       </div>
-      <p class="cart-note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
-      <a href="checkout.html" class="cart-checkout">Continue to checkout <span class="arrow"></span></a>
+      <p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
+      <a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>
     </footer>
   </aside>
 </div>
 
 <!-- ============ Shop hero ============ -->
 <section class="shop-hero">
-  <div class="shop-eyebrow">The Collection &middot; 2025</div>
-  <h1 class="shop-headline">A small, <em>numbered</em> library of Greek honey.</h1>
-  <p class="shop-intro">Five editions, drawn from five terroirs. Each season we release no more than four hundred numbered jars per estate, kept untreated and shipped quietly from Pelion within the week.</p>
+  <div class="shop-eyebrow" data-i18n="shop.eyebrow">The Collection &middot; 2025</div>
+  <h1 class="shop-headline" data-i18n-html="shop.headline_html">A small, <em>numbered</em> library of Greek honey.</h1>
+  <p class="shop-intro" data-i18n="shop.intro">Five editions, drawn from five terroirs. Each season we release no more than four hundred numbered jars per estate, kept untreated and shipped quietly from Pelion within the week.</p>
 </section>
 
 <!-- ============ Filters ============ -->
 <section class="filters">
   <div class="filter-row" id="filterRow">
-    <span class="filter-label">Filter by</span>
-    <button class="pill active" data-filter="all"><span class="dot"></span>All</button>
-    <button class="pill" data-filter="floral"><span class="dot"></span>Floral</button>
-    <button class="pill" data-filter="forest"><span class="dot"></span>Forest</button>
-    <button class="pill" data-filter="mountain"><span class="dot"></span>Mountain</button>
-    <button class="pill" data-filter="wildflower"><span class="dot"></span>Wildflower</button>
-    <button class="pill" data-filter="raw"><span class="dot"></span>Raw Honey</button>
-    <button class="pill" data-filter="limited"><span class="dot"></span>Limited Harvest</button>
-    <button class="pill" data-filter="cold-extracted"><span class="dot"></span>Cold Extracted</button>
-    <button class="pill" data-filter="dark"><span class="dot"></span>Dark Honey</button>
-    <button class="pill" data-filter="light"><span class="dot"></span>Light Honey</button>
+    <span class="filter-label" data-i18n="shop.filterLabel">Filter by</span>
+    <button class="pill active" data-filter="all"><span class="dot"></span><span data-i18n="shop.filter.all">All</span></button>
+    <button class="pill" data-filter="floral"><span class="dot"></span><span data-i18n="shop.filter.floral">Floral</span></button>
+    <button class="pill" data-filter="forest"><span class="dot"></span><span data-i18n="shop.filter.forest">Forest</span></button>
+    <button class="pill" data-filter="mountain"><span class="dot"></span><span data-i18n="shop.filter.mountain">Mountain</span></button>
+    <button class="pill" data-filter="wildflower"><span class="dot"></span><span data-i18n="shop.filter.wildflower">Wildflower</span></button>
+    <button class="pill" data-filter="raw"><span class="dot"></span><span data-i18n="shop.filter.raw">Raw Honey</span></button>
+    <button class="pill" data-filter="limited"><span class="dot"></span><span data-i18n="shop.filter.limited">Limited Harvest</span></button>
+    <button class="pill" data-filter="cold-extracted"><span class="dot"></span><span data-i18n="shop.filter.cold">Cold Extracted</span></button>
+    <button class="pill" data-filter="dark"><span class="dot"></span><span data-i18n="shop.filter.dark">Dark Honey</span></button>
+    <button class="pill" data-filter="light"><span class="dot"></span><span data-i18n="shop.filter.light">Light Honey</span></button>
   </div>
 </section>
 
 <!-- ============ Grid ============ -->
 <section class="shop-grid-wrap">
   <div class="shop-meta">
-    <div class="count"><strong id="visibleCount">6</strong> &nbsp;<span>editions in the collection</span></div>
-    <div class="sort">Sorted by harvest</div>
+    <div class="count"><strong id="visibleCount">6</strong> &nbsp;<span data-i18n="shop.editionsInCollection">editions in the collection</span></div>
+    <div class="sort" data-i18n="shop.sortedBy">Sorted by harvest</div>
   </div>
   <div class="shop-grid" id="shopGrid"></div>
 </section>
@@ -766,33 +772,33 @@ footer.site-footer {
   <div class="footer-grid">
     <div>
       <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
-      <p class="footer-tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
     </div>
     <div class="footer-col">
-      <h4>Collection</h4>
-      <a href="shop.html">All editions</a>
-      <a href="shop.html#raw">Raw honey</a>
-      <a href="shop.html#limited">Limited reserves</a>
-      <a href="shop.html#gift">Gift sets</a>
+      <h4 data-i18n="footer.col.collection">Collection</h4>
+      <a href="shop.html" data-i18n="footer.link.allEditions">All editions</a>
+      <a href="shop.html#raw" data-i18n="footer.link.rawHoney">Raw honey</a>
+      <a href="shop.html#limited" data-i18n="footer.link.limited">Limited reserves</a>
+      <a href="shop.html#gift" data-i18n="footer.link.gift">Gift sets</a>
     </div>
     <div class="footer-col">
-      <h4>House</h4>
-      <a href="about.html">Origin</a>
-      <a href="index.html#process">Estate</a>
-      <a href="#">Journal</a>
-      <a href="contact.html">Contact</a>
+      <h4 data-i18n="footer.col.house">House</h4>
+      <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="index.html#process" data-i18n="footer.link.estate">Estate</a>
+      <a href="#" data-i18n="footer.link.journal">Journal</a>
+      <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4>Care</h4>
-      <a href="#">Shipping</a>
-      <a href="#">Sourcing</a>
-      <a href="contact.html">Trade</a>
-      <a href="contact.html">Press</a>
+      <h4 data-i18n="footer.col.care">Care</h4>
+      <a href="#" data-i18n="footer.link.shipping">Shipping</a>
+      <a href="#" data-i18n="footer.link.sourcing">Sourcing</a>
+      <a href="contact.html" data-i18n="footer.link.trade">Trade</a>
+      <a href="contact.html" data-i18n="footer.link.press">Press</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© Harvest Deli &middot; Pelion, Greece</span>
-    <span>Crafted slowly &middot; MMXXV</span>
+    <span data-i18n="footer.bottom1">© Harvest Deli &middot; Pelion, Greece</span>
+    <span data-i18n="footer.bottom2">Crafted slowly &middot; MMXXV</span>
   </div>
 </footer>
 
@@ -810,12 +816,11 @@ footer.site-footer {
   menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-  /* Render grid from HD_PRODUCTS */
+  /* Render grid using localized product accessor */
   const grid = document.getElementById('shopGrid');
-  const products = window.HD_PRODUCTS;
   const order = ['chestnut', 'wild-thyme', 'pine-heather', 'spring-wildflower', 'mountain-reserve', 'orange-blossom'];
   function cardHTML(slug) {
-    const p = products[slug];
+    const p = window.HD_product(slug);
     const badges = (p.badges || []).map((b, i) => `<span class="badge${i === 0 ? ' gold' : ''}">${b}</span>`).join('');
     return `
       <a class="p-card" href="${p.url}" data-slug="${slug}" data-tags="${p.tags.join(' ')}">
@@ -833,7 +838,15 @@ footer.site-footer {
       </a>
     `;
   }
-  grid.innerHTML = order.map(cardHTML).join('');
+  function renderGrid() {
+    grid.innerHTML = order.map(cardHTML).join('');
+  }
+  renderGrid();
+
+  // Re-render when language changes
+  document.querySelectorAll('.lang-toggle button[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => { setTimeout(renderGrid, 30); });
+  });
 
   /* Reveal */
   const io = new IntersectionObserver(entries => {
@@ -875,8 +888,9 @@ footer.site-footer {
           empty = document.createElement('div');
           empty.id = 'emptyState';
           empty.className = 'empty-state';
-          empty.innerHTML = `<h3>No edition matches that filter.</h3><p>Each season the collection shifts. Try another category or view the full library.</p><button onclick="this.closest('.shop-grid-wrap').querySelectorAll('.pill')[0].click()">View all editions</button>`;
+          empty.innerHTML = `<h3 data-i18n="shop.empty.h">No edition matches that filter.</h3><p data-i18n="shop.empty.p">Each season the collection shifts. Try another category or view the full library.</p><button data-i18n="shop.empty.cta" onclick="this.closest('.shop-grid-wrap').querySelectorAll('.pill')[0].click()">View all editions</button>`;
           grid.appendChild(empty);
+          if (window.HD_applyTranslations) window.HD_applyTranslations();
         }
       } else if (empty) {
         empty.remove();

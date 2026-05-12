@@ -904,11 +904,14 @@ footer {
     <svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg>
   </a>
   <div class="nav-right">
-    <button class="menu-btn" id="menuBtn"><span class="lines"></span>Menu</button>
-    <a href="shop.html" class="nav-acquire">Shop</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button>
+    </div>
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
+    <a href="shop.html" class="nav-acquire" data-i18n="nav.shop">Shop</a>
     <button class="nav-cart" id="navCart" aria-label="Open cart">
       <span class="cart-glyph"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/><path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg></span>
-      Cellar
+      <span data-i18n="nav.cellar">Cellar</span>
       <span class="cart-count">0</span>
     </button>
   </div>
@@ -919,17 +922,17 @@ footer {
   <div class="cart-backdrop"></div>
   <aside class="cart-panel">
     <header class="cart-head">
-      <span class="cart-title">Your <em>Cellar</em></span>
-      <button class="cart-close" aria-label="Close">Close <span class="x"></span></button>
+      <span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>
+      <button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>
     </header>
     <div class="cart-items" id="cartItems"></div>
     <footer class="cart-foot">
       <div class="cart-totals">
-        <span class="label">Subtotal</span>
+        <span class="label" data-i18n="cart.subtotal">Subtotal</span>
         <span class="total" id="cartTotal">€0</span>
       </div>
-      <p class="cart-note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
-      <a href="checkout.html" class="cart-checkout">Continue to checkout <span class="arrow"></span></a>
+      <p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
+      <a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>
     </footer>
   </aside>
 </div>
@@ -938,19 +941,19 @@ footer {
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
   <div class="menu-top">
     <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
-    <button class="menu-close" id="menuClose">Close <span class="x"></span></button>
+    <button class="menu-close" id="menuClose"><span data-i18n="menu.close">Close</span> <span class="x"></span></button>
   </div>
   <div class="menu-content">
     <ol class="menu-items">
-      <li><span class="roman">I</span><a href="shop.html">The <em>Collection</em></a><span class="sub">All editions</span></li>
-      <li><span class="roman">II</span><a href="about.html">The <em>Origin</em></a><span class="sub">Pelion · Greece</span></li>
-      <li><span class="roman">III</span><a href="index.html#process">The <em>Process</em></a><span class="sub">Hand harvested</span></li>
-      <li><span class="roman">IV</span><a href="index.html#journal">The <em>Journal</em></a><span class="sub">Field notes</span></li>
-      <li><span class="roman">V</span><a href="contact.html">Contact</a><span class="sub">Trade &amp; press</span></li>
+      <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
+      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
+      <li><span class="roman">III</span><a href="index.html#process" data-i18n-html="menu.item.process_html">The <em>Process</em></a><span class="sub" data-i18n="menu.item.process_sub">Hand harvested</span></li>
+      <li><span class="roman">IV</span><a href="index.html#journal" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
     </ol>
     <aside class="menu-side">
-      <h5>Visit the estate</h5>
-      <p>By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <h5 data-i18n="menu.estate.h">Visit the estate</h5>
+      <p data-i18n="menu.estate.p">By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
       <div class="contact">
         <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a><br>
         +30 24210 882 14<br>
@@ -959,11 +962,11 @@ footer {
     </aside>
   </div>
   <div class="menu-bottom">
-    <span>© Harvest Deli MMXXV</span>
+    <span data-i18n="menu.copyright">© Harvest Deli MMXXV</span>
     <div class="social">
-      <a href="#">Instagram</a>
-      <a href="#">Journal</a>
-      <a href="#">Wholesale</a>
+      <a href="#" data-i18n="menu.social.instagram">Instagram</a>
+      <a href="#" data-i18n="menu.social.journal">Journal</a>
+      <a href="#" data-i18n="menu.social.wholesale">Wholesale</a>
     </div>
   </div>
 </div>
@@ -971,9 +974,9 @@ footer {
 <!-- ============ Product hero ============ -->
 <section class="product-hero">
   <div class="crumbs">
-    <a href="index.html">Collection</a>
+    <a href="shop.html" data-i18n="product.crumb.collection">Collection</a>
     <span class="sep"></span>
-    <strong>Edition I &middot; Chestnut Honey</strong>
+    <strong data-i18n="product.crumb.current">Edition I &middot; Chestnut Honey</strong>
   </div>
   <div class="hero-stage">
     <div class="big-jar-frame reveal">
@@ -981,29 +984,29 @@ footer {
     </div>
 
     <div class="product-details reveal delay-1" id="buy">
-      <div class="pd-eyebrow">Edition I <span class="dot"></span> 2025 Harvest</div>
-      <h1 class="pd-title">Chestnut Honey, <em>Pelion estate.</em></h1>
+      <div class="pd-eyebrow" data-i18n-html="product.eyebrow_html">Edition I <span class="dot"></span> 2025 Harvest</div>
+      <h1 class="pd-title" data-i18n-html="product.title_html">Chestnut Honey, <em>Pelion estate.</em></h1>
       <div class="pd-meta">
-        <span class="tag">Single Meadow</span>
-        <span class="tag">Cold Extracted</span>
-        <span class="tag">Numbered &middot; 384</span>
+        <span class="tag" data-i18n="product.tag.singleMeadow">Single Meadow</span>
+        <span class="tag" data-i18n="product.tag.coldExtracted">Cold Extracted</span>
+        <span class="tag" data-i18n="product.tag.numbered">Numbered &middot; 384</span>
       </div>
-      <p class="pd-desc">A dark, slow-pouring honey gathered from the sweet chestnut forests that crown the upper ridges of Mount Pelion. Notes of warm wood, dark molasses and a long, almost smoky finish. Bottled in heavy hand-pressed glass, sealed in wax, kept untreated.</p>
+      <p class="pd-desc" data-i18n="product.desc">A dark, slow-pouring honey gathered from the sweet chestnut forests that crown the upper ridges of Mount Pelion. Notes of warm wood, dark molasses and a long, almost smoky finish. Bottled in heavy hand-pressed glass, sealed in wax, kept untreated.</p>
 
       <div class="pd-price-block">
         <div class="pd-price">€68</div>
-        <div class="pd-price-sub">incl. VAT &middot; ships worldwide</div>
+        <div class="pd-price-sub" data-i18n-html="product.priceSub_html">incl. VAT &middot; ships worldwide</div>
       </div>
 
       <div class="pd-size">
-        <button class="pd-size-opt"><strong>120g</strong><span>Tasting</span></button>
-        <button class="pd-size-opt active"><strong>250g</strong><span>Estate</span></button>
-        <button class="pd-size-opt"><strong>500g</strong><span>Reserve</span></button>
+        <button class="pd-size-opt"><strong>120g</strong><span data-i18n="product.size.tasting">Tasting</span></button>
+        <button class="pd-size-opt active"><strong>250g</strong><span data-i18n="product.size.estate">Estate</span></button>
+        <button class="pd-size-opt"><strong>500g</strong><span data-i18n="product.size.reserve">Reserve</span></button>
       </div>
 
-      <button class="pd-cta" data-add-to-cart="chestnut"><span>Add to the cellar</span><span class="arrow"></span></button>
+      <button class="pd-cta" data-add-to-cart="chestnut"><span data-i18n="product.cta">Add to the cellar</span><span class="arrow"></span></button>
 
-      <div class="pd-notes">Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars</div>
+      <div class="pd-notes" data-i18n-html="product.notes_html">Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars</div>
     </div>
   </div>
 </section>
@@ -1011,24 +1014,24 @@ footer {
 <!-- ============ Tasting ============ -->
 <section class="tasting">
   <div class="reveal">
-    <div class="section-eyebrow">The Tasting</div>
-    <h2 class="section-headline">What you taste, slowly.</h2>
+    <div class="section-eyebrow" data-i18n="product.tasting.eyebrow">The Tasting</div>
+    <h2 class="section-headline" data-i18n-html="product.tasting.h_html">What you taste, slowly.</h2>
   </div>
   <div class="tasting-grid">
     <div class="taste-col reveal">
-      <h4>I — First</h4>
-      <h5>"Warm resin, sun on stone."</h5>
-      <p>An immediate breath of dark wood and forest floor, the smell of the mountain itself in late summer, when the chestnut canopy is heavy with bloom.</p>
+      <h4 data-i18n="product.tasting.first.h">I — First</h4>
+      <h5 data-i18n="product.tasting.first.quote">"Warm resin, sun on stone."</h5>
+      <p data-i18n="product.tasting.first.p">An immediate breath of dark wood and forest floor, the smell of the mountain itself in late summer, when the chestnut canopy is heavy with bloom.</p>
     </div>
     <div class="taste-col reveal delay-1">
-      <h4>II — Body</h4>
-      <h5>"Soft amber, slow honey."</h5>
-      <p>The texture takes hold next — a viscosity that pours like a held breath. Wildflower and a clean, gentle sweetness held in the centre of the tongue.</p>
+      <h4 data-i18n="product.tasting.body.h">II — Body</h4>
+      <h5 data-i18n="product.tasting.body.quote">"Soft amber, slow honey."</h5>
+      <p data-i18n="product.tasting.body.p">The texture takes hold next, a viscosity that pours like a held breath. Wildflower and a clean, gentle sweetness held in the centre of the tongue.</p>
     </div>
     <div class="taste-col reveal delay-2">
-      <h4>III — Finish</h4>
-      <h5>"Mineral, long, golden."</h5>
-      <p>A slow descent into stone and salt. Subtle, almost dry — the kind of finish that lingers in the room long after the spoon has been set down.</p>
+      <h4 data-i18n="product.tasting.finish.h">III — Finish</h4>
+      <h5 data-i18n="product.tasting.finish.quote">"Mineral, long, golden."</h5>
+      <p data-i18n="product.tasting.finish.p">A slow descent into stone and salt. Subtle, almost dry. The kind of finish that lingers in the room long after the spoon has been set down.</p>
     </div>
   </div>
 </section>
@@ -1039,54 +1042,54 @@ footer {
     <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="harvestdeli.png" id="originVideo">
       <source src="origin.mp4" type="video/mp4">
     </video>
-    <span class="caption">Pelion &middot; 950m &middot; Late summer</span>
+    <span class="caption" data-i18n="product.origin.caption">Pelion &middot; 950m &middot; Late summer</span>
   </div>
   <div class="product-origin-meta reveal delay-1">
-    <div class="section-eyebrow">The Origin</div>
-    <h2>One meadow, one season.</h2>
-    <p>The 2025 harvest comes from a single, south-facing chestnut grove at 950 metres on the slopes of Mount Pelion, where the trees bloom in a narrow window each late summer.</p>
-    <p>Three hundred and eighty-four jars were drawn from this season — every one numbered by hand, sealed with black wax, and kept exactly as it left the comb.</p>
+    <div class="section-eyebrow" data-i18n="product.origin.eyebrow">The Origin</div>
+    <h2 data-i18n-html="product.origin.h_html">One meadow, one season.</h2>
+    <p data-i18n="product.origin.p1">The 2025 harvest comes from a single, south-facing chestnut grove at 950 metres on the slopes of Mount Pelion, where the trees bloom in a narrow window each late summer.</p>
+    <p data-i18n="product.origin.p2">Three hundred and eighty-four jars were drawn from this season. Every one numbered by hand, sealed with black wax, and kept exactly as it left the comb.</p>
   </div>
 </section>
 
 <!-- ============ Details ============ -->
 <section class="details">
   <div class="reveal">
-    <div class="section-eyebrow">The Particulars</div>
-    <h2 class="section-headline">Quietly, carefully made.</h2>
+    <div class="section-eyebrow" data-i18n="product.details.eyebrow">The Particulars</div>
+    <h2 class="section-headline" data-i18n-html="product.details.h_html">Quietly, carefully made.</h2>
   </div>
   <div class="details-grid">
     <div class="detail-cell reveal">
-      <h4>Net weight</h4>
-      <p>250g <em>glass jar</em></p>
+      <h4 data-i18n="product.det.weight.lbl">Net weight</h4>
+      <p data-i18n-html="product.det.weight.val_html">250g <em>glass jar</em></p>
     </div>
     <div class="detail-cell reveal delay-1">
-      <h4>Origin</h4>
-      <p>Pelion, <em>Greece</em></p>
+      <h4 data-i18n="product.det.origin.lbl">Origin</h4>
+      <p data-i18n-html="product.det.origin.val_html">Pelion, <em>Greece</em></p>
     </div>
     <div class="detail-cell reveal delay-2">
-      <h4>Vintage</h4>
-      <p>Late summer <em>2025</em></p>
+      <h4 data-i18n="product.det.vintage.lbl">Vintage</h4>
+      <p data-i18n-html="product.det.vintage.val_html">Late summer <em>2025</em></p>
     </div>
     <div class="detail-cell reveal delay-3">
-      <h4>Edition</h4>
-      <p>384 jars, <em>numbered</em></p>
+      <h4 data-i18n="product.det.edition.lbl">Edition</h4>
+      <p data-i18n-html="product.det.edition.val_html">384 jars, <em>numbered</em></p>
     </div>
     <div class="detail-cell reveal">
-      <h4>Ingredients</h4>
-      <p>Raw honey. <em>That is all.</em></p>
+      <h4 data-i18n="product.det.ingredients.lbl">Ingredients</h4>
+      <p data-i18n-html="product.det.ingredients.val_html">Raw honey. <em>That is all.</em></p>
     </div>
     <div class="detail-cell reveal delay-1">
-      <h4>Storage</h4>
-      <p>Cool, dry, <em>away from light</em></p>
+      <h4 data-i18n="product.det.storage.lbl">Storage</h4>
+      <p data-i18n-html="product.det.storage.val_html">Cool, dry, <em>away from light</em></p>
     </div>
     <div class="detail-cell reveal delay-2">
-      <h4>Shelf life</h4>
-      <p>Indefinite, <em>kept sealed</em></p>
+      <h4 data-i18n="product.det.shelf.lbl">Shelf life</h4>
+      <p data-i18n-html="product.det.shelf.val_html">Indefinite, <em>kept sealed</em></p>
     </div>
     <div class="detail-cell reveal delay-3">
-      <h4>Packaging</h4>
-      <p>Hand-pressed glass, <em>black wax</em></p>
+      <h4 data-i18n="product.det.package.lbl">Packaging</h4>
+      <p data-i18n-html="product.det.package.val_html">Hand-pressed glass, <em>black wax</em></p>
     </div>
   </div>
 </section>
@@ -1094,8 +1097,8 @@ footer {
 <!-- ============ Also from collection ============ -->
 <section class="also">
   <div class="reveal">
-    <div class="section-eyebrow">Also From The Collection</div>
-    <h2 class="section-headline">The rest of the house.</h2>
+    <div class="section-eyebrow" data-i18n="product.also.eyebrow">Also From The Collection</div>
+    <h2 class="section-headline" data-i18n-html="product.also.h_html">The rest of the house.</h2>
   </div>
   <div class="also-grid">
     <a href="shop.html" class="also-card reveal">
@@ -1124,33 +1127,33 @@ footer {
   <div class="footer-grid">
     <div>
       <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
-      <p class="footer-tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
     </div>
     <div class="footer-col">
-      <h4>Collection</h4>
-      <a href="product.html">Chestnut Honey</a>
-      <a href="shop.html">Pine &amp; Heather</a>
-      <a href="shop.html">Spring Wildflower</a>
-      <a href="shop.html">Reserve</a>
+      <h4 data-i18n="footer.col.collection">Collection</h4>
+      <a href="product.html" data-i18n="footer.link.chestnut">Chestnut Honey</a>
+      <a href="shop.html" data-i18n="footer.link.pineHeather">Pine &amp; Heather</a>
+      <a href="shop.html" data-i18n="footer.link.springWildflower">Spring Wildflower</a>
+      <a href="shop.html" data-i18n="footer.link.reserve">Reserve</a>
     </div>
     <div class="footer-col">
-      <h4>House</h4>
-      <a href="about.html">Origin</a>
-      <a href="index.html#process">Estate</a>
-      <a href="#">Journal</a>
-      <a href="contact.html">Contact</a>
+      <h4 data-i18n="footer.col.house">House</h4>
+      <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="index.html#process" data-i18n="footer.link.estate">Estate</a>
+      <a href="#" data-i18n="footer.link.journal">Journal</a>
+      <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4>Care</h4>
-      <a href="#">Shipping</a>
-      <a href="#">Sourcing</a>
-      <a href="#">Trade</a>
-      <a href="#">Press</a>
+      <h4 data-i18n="footer.col.care">Care</h4>
+      <a href="#" data-i18n="footer.link.shipping">Shipping</a>
+      <a href="#" data-i18n="footer.link.sourcing">Sourcing</a>
+      <a href="#" data-i18n="footer.link.trade">Trade</a>
+      <a href="#" data-i18n="footer.link.press">Press</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© Harvest Deli · Pelion, Greece</span>
-    <span>Crafted slowly · MMXXV</span>
+    <span data-i18n="footer.bottom1">© Harvest Deli · Pelion, Greece</span>
+    <span data-i18n="footer.bottom2">Crafted slowly · MMXXV</span>
   </div>
 </footer>
 
@@ -1158,10 +1161,10 @@ footer {
 <div class="sticky-buy" id="stickyBuy">
   <div class="sb-thumb"><span class="mini-jar"></span></div>
   <div class="sb-meta">
-    <div class="sb-name">Chestnut Honey, Pelion estate</div>
-    <div class="sb-price">€68 &middot; Edition I</div>
+    <div class="sb-name" data-i18n="product.sticky.name">Chestnut Honey, Pelion estate</div>
+    <div class="sb-price" data-i18n="product.sticky.price">€68 &middot; Edition I</div>
   </div>
-  <button data-add-to-cart="chestnut">Add</button>
+  <button data-add-to-cart="chestnut" data-i18n="product.sticky.add">Add</button>
 </div>
 
 <script src="shared.js"></script>

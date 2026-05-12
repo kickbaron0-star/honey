@@ -424,6 +424,46 @@
   .cart-toast.show { transform: none; }
 }
 
+/* ----------- Language toggle ----------- */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  color: var(--ink-soft);
+  padding-left: 0.28em;
+}
+.lang-toggle button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 6px 0;
+  opacity: 0.5;
+  transition: opacity 0.5s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)), color 0.5s var(--ease);
+  font-weight: 500;
+}
+.lang-toggle button:hover { opacity: 0.8; }
+.lang-toggle button.active { opacity: 1; color: var(--ink); }
+.lang-toggle .sep {
+  opacity: 0.3;
+  width: 1px;
+  height: 11px;
+  background: currentColor;
+  display: inline-block;
+}
+nav.site-nav:not(.scrolled) .lang-toggle { color: rgba(245, 239, 228, 0.7); }
+nav.site-nav:not(.scrolled) .lang-toggle button.active { color: var(--cream); }
+@media (max-width: 600px) {
+  .lang-toggle { font-size: 9px; letter-spacing: 0.18em; gap: 6px; }
+  .lang-toggle button { padding: 6px 2px; }
+}
+
 /* ----------- Footer logo: deepen so the foil reads on cream ----------- */
 .footer-brand .logo-mark,
 footer .logo-mark.footer-size {
