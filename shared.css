@@ -464,6 +464,87 @@ nav.site-nav:not(.scrolled) .lang-toggle button.active { color: var(--cream); }
   .lang-toggle button { padding: 6px 2px; }
 }
 
+/* ============================================================
+   Honey droplet underline beneath the SHOP nav link
+   Subtle luxury microinteraction. Cycle ~9s, almost unnoticeable.
+   ============================================================ */
+.nav-acquire.honey-shop {
+  border-bottom: none !important;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-acquire.honey-shop .honey-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 0;
+  pointer-events: none;
+  display: block;
+}
+.nav-acquire.honey-shop .honey-underline::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.85;
+}
+.nav-acquire.honey-shop .honey-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 22px;
+  overflow: visible;
+  display: block;
+}
+.nav-acquire.honey-shop .hl-hang {
+  transform-origin: 8px 0;
+  transform-box: fill-box;
+  transform: scaleY(0);
+  animation: honey-hang 9s cubic-bezier(0.5, 0, 0.4, 1) infinite;
+  filter: drop-shadow(0 0.4px 0.8px rgba(120, 70, 20, 0.32));
+}
+.nav-acquire.honey-shop .hl-fall {
+  opacity: 0;
+  transform: translateY(0);
+  animation: honey-fall 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  filter: drop-shadow(0 0.5px 1px rgba(120, 70, 20, 0.32));
+}
+@keyframes honey-hang {
+  /* idle (line only) */
+  0%, 58%        { transform: scaleY(0); }
+  /* form gently */
+  64%            { transform: scaleY(0.5); }
+  /* stretch with viscosity */
+  70%            { transform: scaleY(1.0); }
+  74%            { transform: scaleY(1.45); }
+  /* drop separates — hang snaps back slightly (surface tension) */
+  76%            { transform: scaleY(0.45) translateY(-0.5px); }
+  /* settle */
+  84%, 100%      { transform: scaleY(0); }
+}
+@keyframes honey-fall {
+  /* invisible while hang stretches */
+  0%, 73%        { opacity: 0; transform: translateY(0); }
+  /* emerge just below the line at separation moment */
+  76%            { opacity: 0.95; transform: translateY(3px); }
+  /* fall, accelerating subtly */
+  84%            { opacity: 0.92; transform: translateY(9px); }
+  90%            { opacity: 0.55; transform: translateY(13px); }
+  /* fade out before the loop resets */
+  95%, 100%      { opacity: 0; transform: translateY(17px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-acquire.honey-shop .hl-hang,
+  .nav-acquire.honey-shop .hl-fall {
+    animation: none;
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
 /* ----------- Footer logo: deepen so the foil reads on cream ----------- */
 .footer-brand .logo-mark,
 footer .logo-mark.footer-size {

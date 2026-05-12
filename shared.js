@@ -1020,8 +1020,63 @@
       btn.addEventListener('click', () => setLang(btn.dataset.lang));
     });
 
+    // Honey droplet microinteraction on the Shop nav link
+    setupHoneyShopLinks();
+
     applyTranslations();
     render();
+  }
+
+  // ---------- Honey droplet underline on the SHOP nav link ----------
+  // Subtle luxury detail: every ~9s a tiny amber droplet forms, stretches,
+  // separates, falls softly downward.
+  function setupHoneyShopLinks() {
+    const HONEY_SVG =
+      '<svg class="honey-svg" viewBox="0 0 16 22" aria-hidden="true">' +
+        '<defs>' +
+          '<radialGradient id="hdGrad" cx="40%" cy="32%" r="62%">' +
+            '<stop offset="0%" stop-color="rgba(255,238,196,0.95)"/>' +
+            '<stop offset="55%" stop-color="rgba(212,172,106,0.92)"/>' +
+            '<stop offset="100%" stop-color="rgba(138,98,40,0.9)"/>' +
+          '</radialGradient>' +
+        '</defs>' +
+        '<g class="hl-hang">' +
+          '<path d="M 8 0 Q 5.8 1.8 6 4.6 Q 6 7 8 7.4 Q 10 7 10 4.6 Q 10.2 1.8 8 0 Z" fill="url(#hdGrad)"/>' +
+        '</g>' +
+        '<g class="hl-fall">' +
+          '<ellipse cx="8" cy="2" rx="1.5" ry="1.9" fill="url(#hdGrad)"/>' +
+          '<ellipse cx="7.5" cy="1.5" rx="0.35" ry="0.5" fill="rgba(255,250,220,0.75)"/>' +
+        '</g>' +
+      '</svg>';
+
+    document.querySelectorAll('.nav-acquire').forEach(el => {
+      if (el.classList.contains('honey-shop')) return;
+      el.classList.add('honey-shop');
+
+      // Move any data-i18n from the link onto a wrapper span so translation
+      // updates don't clobber the honey-underline child we inject below.
+      if (!el.querySelector('.shop-label')) {
+        const i18nKey = el.dataset.i18n;
+        const text = (el.textContent || '').trim();
+        el.textContent = '';
+        const label = document.createElement('span');
+        label.className = 'shop-label';
+        label.textContent = text;
+        if (i18nKey) {
+          label.dataset.i18n = i18nKey;
+          delete el.dataset.i18n;
+        }
+        el.appendChild(label);
+      }
+
+      if (!el.querySelector('.honey-underline')) {
+        const u = document.createElement('span');
+        u.className = 'honey-underline';
+        u.setAttribute('aria-hidden', 'true');
+        u.innerHTML = HONEY_SVG;
+        el.appendChild(u);
+      }
+    });
   }
 
   if (document.readyState === 'loading') {
