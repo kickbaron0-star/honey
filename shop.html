@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collection — Harvest Deli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root {
+  --bg: #F5EFE4;
+  --bg-deep: #EDE3D2;
+  --ink: #1F1A14;
+  --ink-soft: #5C5247;
+  --ink-warm: #756859;
+  --stone: #C9BBA3;
+  --gold: #B8945A;
+  --gold-light: #D4AC6A;
+  --gold-deep: #8A6228;
+  --gold-soft: rgba(184, 148, 90, 0.32);
+  --cream: #FAF6EE;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --track-label: 0.36em;
+  --track-button: 0.42em;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold-soft); color: var(--ink); }
+
+/* ---- Logo ---- */
+.logo-svg { display: block; height: 100%; width: auto; }
+.logo-mark.nav-size { height: 44px; }
+.logo-mark.menu-size { height: 70px; }
+.logo-mark.footer-size { height: 80px; }
+.logo-mark.label-size { height: 56px; }
+
+/* ---- Nav ---- */
+nav.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 48px;
+  color: var(--ink);
+  background: rgba(245, 239, 228, 0.78);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(26, 22, 18, 0.05);
+}
+nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; color: inherit; }
+nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
+.menu-btn, .nav-acquire {
+  background: none; border: none; color: inherit; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
+  font-weight: 500; padding: 6px 0;
+  display: inline-flex; align-items: center; gap: 16px;
+  text-decoration: none; transition: opacity 0.5s var(--ease);
+  opacity: 0.92; padding-left: var(--track-label);
+}
+.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
+.menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
+.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before { width: 100%; }
+.menu-btn .lines::after { width: 70%; }
+.nav-acquire { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+
+/* ---- Menu overlay (shared style copy) ---- */
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 150;
+  background: #0B0907; color: var(--cream);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.9s var(--ease);
+  display: flex; flex-direction: column;
+  padding: 32px 48px; overflow: hidden;
+}
+.menu-overlay.open { opacity: 1; pointer-events: auto; }
+.menu-overlay::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 75% 30%, rgba(212,172,106,0.14), transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(184,148,90,0.08), transparent 60%);
+  pointer-events: none;
+}
+.menu-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8vh; position: relative; z-index: 2; }
+.menu-close {
+  background: none; border: none; color: currentColor; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+  font-weight: 500; display: inline-flex; align-items: center; gap: 14px;
+  opacity: 0.85; transition: opacity 0.5s var(--ease);
+}
+.menu-close:hover { opacity: 1; }
+.menu-close .x { width: 18px; height: 18px; position: relative; }
+.menu-close .x::before, .menu-close .x::after {
+  content: ''; position: absolute; top: 50%; left: 0;
+  width: 100%; height: 1px; background: currentColor;
+}
+.menu-close .x::before { transform: rotate(45deg); }
+.menu-close .x::after { transform: rotate(-45deg); }
+.menu-content { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8%; flex: 1; align-items: center; position: relative; z-index: 2; }
+.menu-items { list-style: none; }
+.menu-items li {
+  border-bottom: 1px solid rgba(245,239,228,0.1);
+  padding: 22px 0;
+  display: grid; grid-template-columns: 60px 1fr auto;
+  align-items: baseline; gap: 32px;
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.menu-overlay.open .menu-items li { opacity: 1; transform: translateY(0); }
+.menu-overlay.open .menu-items li:nth-child(1) { transition-delay: 0.18s; }
+.menu-overlay.open .menu-items li:nth-child(2) { transition-delay: 0.28s; }
+.menu-overlay.open .menu-items li:nth-child(3) { transition-delay: 0.38s; }
+.menu-overlay.open .menu-items li:nth-child(4) { transition-delay: 0.48s; }
+.menu-overlay.open .menu-items li:nth-child(5) { transition-delay: 0.58s; }
+.menu-overlay.open .menu-items li:nth-child(6) { transition-delay: 0.68s; }
+.menu-items .roman {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
+  font-size: 14px; color: var(--gold); letter-spacing: 0.1em;
+}
+.menu-items a {
+  font-family: 'Cormorant Garamond', serif; font-weight: 400;
+  font-size: clamp(40px, 5vw, 72px); line-height: 1.04;
+  letter-spacing: -0.024em; color: var(--cream);
+  text-decoration: none; position: relative; display: inline-block;
+  transition: color 0.5s var(--ease);
+}
+.menu-items a em { font-style: italic; font-weight: 400; color: rgba(245, 239, 228, 0.78); letter-spacing: -0.014em; }
+.menu-items a::after {
+  content: ''; position: absolute; bottom: -8px; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width 0.7s var(--ease);
+}
+.menu-items a:hover { color: var(--gold-light); }
+.menu-items a:hover::after { width: 100%; }
+.menu-items .sub {
+  font-family: 'Inter', sans-serif; font-size: 9.5px;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: rgba(245,239,228,0.55); font-weight: 500; text-align: right;
+  padding-left: var(--track-label);
+}
+.menu-side {
+  padding-left: 6%; border-left: 1px solid rgba(245,239,228,0.08);
+  opacity: 0; transform: translateX(30px);
+  transition: opacity 1s var(--ease) 0.6s, transform 1s var(--ease) 0.6s;
+}
+.menu-overlay.open .menu-side { opacity: 1; transform: translateX(0); }
+.menu-side h5 {
+  font-family: 'Inter', sans-serif; font-size: 9.5px;
+  letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 22px; font-weight: 500;
+}
+.menu-side p {
+  font-family: 'Cormorant Garamond', serif; font-style: normal; font-weight: 400;
+  font-size: 20px; line-height: 1.55; color: rgba(245,239,228,0.85);
+  max-width: 24ch; margin-bottom: 38px; letter-spacing: -0.005em;
+}
+.menu-side .contact { font-size: 11px; line-height: 2; color: rgba(245,239,228,0.65); }
+.menu-side .contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(245,239,228,0.25); padding-bottom: 1px; transition: color 0.4s var(--ease); }
+.menu-side .contact a:hover { color: var(--gold-light); }
+.menu-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(245,239,228,0.45); padding-top: 4vh;
+  position: relative; z-index: 2; font-weight: 400;
+}
+.menu-bottom .social { display: flex; gap: 28px; }
+.menu-bottom .social a { color: inherit; text-decoration: none; transition: color 0.4s var(--ease); }
+.menu-bottom .social a:hover { color: var(--gold-light); }
+
+/* ---- Shop hero ---- */
+.shop-hero {
+  padding: 22vh 8% 12vh;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.shop-hero::before {
+  content: '';
+  position: absolute;
+  top: -30%; left: 50%;
+  width: 700px; height: 500px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(220, 175, 110, 0.22), transparent 60%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.shop-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 40px;
+  font-weight: 500;
+  padding-left: var(--track-label);
+}
+.shop-headline {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-weight: 400;
+  font-size: clamp(54px, 7vw, 116px);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  margin-bottom: 38px;
+  max-width: 18ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.shop-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
+.shop-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin: 0 auto;
+  letter-spacing: -0.004em;
+}
+
+/* ---- Filters ---- */
+.filters {
+  padding: 6vh 8% 8vh;
+  background: var(--bg);
+  position: sticky;
+  top: 64px;
+  z-index: 30;
+  background: rgba(245, 239, 228, 0.92);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid rgba(26, 22, 18, 0.05);
+}
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.filter-row .filter-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-right: 18px;
+  font-weight: 500;
+  padding-left: var(--track-label);
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid rgba(26, 22, 18, 0.15);
+  background: rgba(255, 252, 246, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.55s var(--ease);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+.pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(212, 172, 106, 0.25), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.pill:hover { border-color: rgba(184, 148, 90, 0.4); color: var(--ink); transform: translateY(-1px); }
+.pill:hover::before { opacity: 1; }
+.pill.active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.pill.active::before { opacity: 0; }
+.pill .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold-light);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.pill.active .dot { opacity: 1; transform: scale(1); }
+
+/* ---- Product grid ---- */
+.shop-grid-wrap { padding: 10vh 8% 16vh; }
+.shop-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6vh;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(26, 22, 18, 0.06);
+}
+.shop-meta .count {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-warm);
+  font-weight: 400;
+}
+.shop-meta .count strong { font-style: normal; color: var(--ink); font-weight: 400; padding-right: 4px; }
+.shop-meta .sort {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  padding-left: var(--track-label);
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6vh 5%;
+}
+
+.p-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  transition: transform 0.7s var(--ease);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+.p-card.in { opacity: 1; transform: translateY(0); }
+.p-card:hover { transform: translateY(-8px); }
+.p-card.hidden { display: none; }
+
+.p-card .jar-wrap {
+  aspect-ratio: 4 / 5;
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-deep) 0%, #DBCBAE 100%);
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: box-shadow 0.7s var(--ease);
+}
+.p-card:hover .jar-wrap { box-shadow: 0 40px 70px -22px rgba(60, 36, 14, 0.32); }
+.p-card .jar-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255, 220, 170, 0.45), transparent 55%);
+  pointer-events: none;
+}
+.p-card .mid-jar {
+  position: absolute;
+  bottom: 8%; left: 50%;
+  transform: translateX(-50%);
+  width: 50%; height: 78%;
+  border-radius: 5px 5px 18px 18px;
+  box-shadow:
+    inset 8px 0 14px rgba(255,235,180,0.35),
+    inset -8px 0 14px rgba(50,25,0,0.5),
+    inset 0 -22px 32px rgba(35,18,0,0.5);
+  transition: transform 0.7s var(--ease);
+}
+.p-card:hover .mid-jar { transform: translateX(-50%) translateY(-6px); }
+.p-card .mid-jar::before {
+  content: '';
+  position: absolute;
+  top: -22px; left: 16%; right: 16%;
+  height: 24px;
+  background: linear-gradient(180deg, #2C231A 0%, #0D0907 100%);
+  border-radius: 3px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+}
+.p-card .mid-jar.amber { background: linear-gradient(180deg, rgba(255,240,200,0.3) 0%, rgba(220,170,100,0.92) 14%, rgba(180,122,55,0.98) 42%, rgba(130,82,28,1) 78%, rgba(70,40,10,1) 100%); }
+.p-card .mid-jar.bronze { background: linear-gradient(180deg, rgba(255,235,190,0.28) 0%, rgba(186,140,80,0.92) 14%, rgba(140,90,40,0.98) 42%, rgba(100,55,20,1) 78%, rgba(50,25,5,1) 100%); }
+.p-card .mid-jar.straw { background: linear-gradient(180deg, rgba(255,245,210,0.32) 0%, rgba(240,210,140,0.92) 14%, rgba(210,170,90,0.98) 42%, rgba(170,130,50,1) 78%, rgba(110,80,25,1) 100%); }
+.p-card .mid-jar.pale { background: linear-gradient(180deg, rgba(255,248,222,0.34) 0%, rgba(248,225,170,0.92) 14%, rgba(232,200,130,0.98) 42%, rgba(200,160,90,1) 78%, rgba(150,118,55,1) 100%); }
+.p-card .mid-jar.deep { background: linear-gradient(180deg, rgba(220,180,120,0.22) 0%, rgba(120,75,30,0.92) 14%, rgba(80,45,12,0.98) 42%, rgba(50,25,5,1) 78%, rgba(20,10,2,1) 100%); }
+
+.p-card .badges {
+  position: absolute;
+  top: 18px; left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+.p-card .badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(15, 11, 6, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 5px 10px;
+  font-weight: 500;
+  padding-left: calc(10px + 0.16em);
+}
+.p-card .badge.gold {
+  background: rgba(184, 148, 90, 0.92);
+  color: #0E0B08;
+}
+
+.p-card .info {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 16px;
+}
+.p-card .info .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.p-card .info .price {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.014em;
+  color: var(--ink);
+  text-align: right;
+}
+.p-card .info .region {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  padding-left: var(--track-label);
+}
+.p-card .info .weight {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+  font-weight: 400;
+  opacity: 0.7;
+}
+.p-card .notes {
+  grid-column: 1 / -1;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--ink-warm);
+  line-height: 1.4;
+  margin-top: 8px;
+  letter-spacing: -0.006em;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 12vh 6%;
+  color: var(--ink-soft);
+}
+.empty-state h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.empty-state p { font-size: 14px; line-height: 1.8; max-width: 38ch; margin: 0 auto 32px; }
+.empty-state button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 30px;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid rgba(26, 22, 18, 0.36);
+  cursor: pointer;
+  transition: all 0.6s var(--ease);
+  padding-left: calc(30px + var(--track-button));
+}
+.empty-state button:hover { background: var(--ink); color: var(--cream); }
+
+/* ---- Footer ---- */
+footer.site-footer {
+  padding: 14vh 8% 6vh;
+  background: var(--bg);
+  border-top: 1px solid rgba(26, 22, 18, 0.06);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 8%;
+  margin-bottom: 12vh;
+}
+.footer-brand { margin-bottom: 28px; }
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: normal; font-weight: 400;
+  font-size: 18px; color: var(--ink-soft);
+  max-width: 26ch; line-height: 1.5;
+  letter-spacing: -0.006em;
+}
+.footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px; letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  margin-bottom: 28px; font-weight: 500;
+  color: var(--ink);
+  padding-left: var(--track-label);
+}
+.footer-col a {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--ink-soft); text-decoration: none;
+  margin-bottom: 16px; letter-spacing: 0.005em;
+  transition: color 0.5s var(--ease); font-weight: 400;
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px; letter-spacing: var(--track-label);
+  color: var(--ink-soft); text-transform: uppercase;
+  opacity: 0.6; padding-top: 40px;
+  border-top: 1px solid rgba(26, 22, 18, 0.06);
+  font-weight: 500;
+  padding-left: var(--track-label);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+  .shop-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  nav.site-nav { padding: 14px 22px; }
+  nav.site-nav .nav-right { gap: 18px; }
+  .shop-hero { padding: 16vh 7% 10vh; }
+  .filters { top: 60px; padding: 4vh 7% 5vh; }
+  .filter-row { gap: 6px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .pill { white-space: nowrap; flex-shrink: 0; }
+  .filter-row .filter-label { display: none; }
+  .shop-grid-wrap { padding: 8vh 7% 12vh; }
+  .shop-grid { grid-template-columns: 1fr; gap: 8vh; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 6vh 8%; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .menu-overlay { padding: 24px 28px; }
+  .menu-content { grid-template-columns: 1fr; gap: 6vh; align-items: start; }
+  .menu-items li { grid-template-columns: 40px 1fr; gap: 16px; }
+  .menu-items .sub { grid-column: 1 / -1; text-align: left; padding-left: 56px; margin-top: -8px; }
+  .menu-side { padding-left: 0; border-left: none; border-top: 1px solid rgba(245,239,228,0.08); padding-top: 5vh; }
+  .menu-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG defs (logo) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAE3A3"/>
+      <stop offset="22%" stop-color="#C99948"/>
+      <stop offset="48%" stop-color="#F1CC79"/>
+      <stop offset="72%" stop-color="#9D6F29"/>
+      <stop offset="100%" stop-color="#6E4B1B"/>
+    </linearGradient>
+    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8C982"/>
+      <stop offset="35%" stop-color="#A87A36"/>
+      <stop offset="60%" stop-color="#D4A85F"/>
+      <stop offset="100%" stop-color="#5C3F18"/>
+    </linearGradient>
+    <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
+    <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
+      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)">
+        <textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath>
+      </text>
+      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+    <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
+      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)">
+        <textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath>
+      </text>
+      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ Nav ============ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">
+    <svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg>
+  </a>
+  <div class="nav-right">
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span>Menu</button>
+    <button class="nav-cart" id="navCart" aria-label="Open cart">
+      <span class="cart-glyph"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/><path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg></span>
+      Cellar
+      <span class="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ Menu overlay ============ -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="menu-top">
+    <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
+    <button class="menu-close" id="menuClose">Close <span class="x"></span></button>
+  </div>
+  <div class="menu-content">
+    <ol class="menu-items">
+      <li><span class="roman">I</span><a href="shop.html">The <em>Collection</em></a><span class="sub">All editions</span></li>
+      <li><span class="roman">II</span><a href="about.html">The <em>Origin</em></a><span class="sub">Pelion · Greece</span></li>
+      <li><span class="roman">III</span><a href="index.html#process">The <em>Process</em></a><span class="sub">Hand harvested</span></li>
+      <li><span class="roman">IV</span><a href="index.html#journal">The <em>Journal</em></a><span class="sub">Field notes</span></li>
+      <li><span class="roman">V</span><a href="contact.html">Contact</a><span class="sub">Trade &amp; press</span></li>
+    </ol>
+    <aside class="menu-side">
+      <h5>Visit the estate</h5>
+      <p>By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <div class="contact">
+        <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a><br>
+        +30 24210 882 14<br>
+        Pelion, 37006 &middot; Greece
+      </div>
+    </aside>
+  </div>
+  <div class="menu-bottom">
+    <span>© Harvest Deli MMXXV</span>
+    <div class="social">
+      <a href="#">Instagram</a>
+      <a href="#">Journal</a>
+      <a href="#">Wholesale</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Cart drawer ============ -->
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-backdrop"></div>
+  <aside class="cart-panel">
+    <header class="cart-head">
+      <span class="cart-title">Your <em>Cellar</em></span>
+      <button class="cart-close" aria-label="Close">Close <span class="x"></span></button>
+    </header>
+    <div class="cart-items" id="cartItems"></div>
+    <footer class="cart-foot">
+      <div class="cart-totals">
+        <span class="label">Subtotal</span>
+        <span class="total" id="cartTotal">€0</span>
+      </div>
+      <p class="cart-note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
+      <a href="checkout.html" class="cart-checkout">Continue to checkout <span class="arrow"></span></a>
+    </footer>
+  </aside>
+</div>
+
+<!-- ============ Shop hero ============ -->
+<section class="shop-hero">
+  <div class="shop-eyebrow">The Collection &middot; 2025</div>
+  <h1 class="shop-headline">A small, <em>numbered</em> library of Greek honey.</h1>
+  <p class="shop-intro">Five editions, drawn from five terroirs. Each season we release no more than four hundred numbered jars per estate, kept untreated and shipped quietly from Pelion within the week.</p>
+</section>
+
+<!-- ============ Filters ============ -->
+<section class="filters">
+  <div class="filter-row" id="filterRow">
+    <span class="filter-label">Filter by</span>
+    <button class="pill active" data-filter="all"><span class="dot"></span>All</button>
+    <button class="pill" data-filter="floral"><span class="dot"></span>Floral</button>
+    <button class="pill" data-filter="forest"><span class="dot"></span>Forest</button>
+    <button class="pill" data-filter="mountain"><span class="dot"></span>Mountain</button>
+    <button class="pill" data-filter="wildflower"><span class="dot"></span>Wildflower</button>
+    <button class="pill" data-filter="raw"><span class="dot"></span>Raw Honey</button>
+    <button class="pill" data-filter="limited"><span class="dot"></span>Limited Harvest</button>
+    <button class="pill" data-filter="cold-extracted"><span class="dot"></span>Cold Extracted</button>
+    <button class="pill" data-filter="dark"><span class="dot"></span>Dark Honey</button>
+    <button class="pill" data-filter="light"><span class="dot"></span>Light Honey</button>
+  </div>
+</section>
+
+<!-- ============ Grid ============ -->
+<section class="shop-grid-wrap">
+  <div class="shop-meta">
+    <div class="count"><strong id="visibleCount">6</strong> &nbsp;<span>editions in the collection</span></div>
+    <div class="sort">Sorted by harvest</div>
+  </div>
+  <div class="shop-grid" id="shopGrid"></div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
+      <p class="footer-tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Collection</h4>
+      <a href="shop.html">All editions</a>
+      <a href="shop.html#raw">Raw honey</a>
+      <a href="shop.html#limited">Limited reserves</a>
+      <a href="shop.html#gift">Gift sets</a>
+    </div>
+    <div class="footer-col">
+      <h4>House</h4>
+      <a href="about.html">Origin</a>
+      <a href="index.html#process">Estate</a>
+      <a href="#">Journal</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Care</h4>
+      <a href="#">Shipping</a>
+      <a href="#">Sourcing</a>
+      <a href="contact.html">Trade</a>
+      <a href="contact.html">Press</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Harvest Deli &middot; Pelion, Greece</span>
+    <span>Crafted slowly &middot; MMXXV</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  /* Menu */
+  const menuBtn = document.getElementById('menuBtn');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuClose = document.getElementById('menuClose');
+  const open = () => { menuOverlay.classList.add('open'); menuOverlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+  const close = () => { menuOverlay.classList.remove('open'); menuOverlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+  menuBtn.addEventListener('click', open);
+  menuClose.addEventListener('click', close);
+  menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  /* Render grid from HD_PRODUCTS */
+  const grid = document.getElementById('shopGrid');
+  const products = window.HD_PRODUCTS;
+  const order = ['chestnut', 'wild-thyme', 'pine-heather', 'spring-wildflower', 'mountain-reserve', 'orange-blossom'];
+  function cardHTML(slug) {
+    const p = products[slug];
+    const badges = (p.badges || []).map((b, i) => `<span class="badge${i === 0 ? ' gold' : ''}">${b}</span>`).join('');
+    return `
+      <a class="p-card" href="${p.url}" data-slug="${slug}" data-tags="${p.tags.join(' ')}">
+        <div class="jar-wrap">
+          <div class="badges">${badges}</div>
+          <div class="mid-jar ${p.hue}"></div>
+        </div>
+        <div class="info">
+          <div class="name">${p.name}</div>
+          <div class="price">€${p.price}</div>
+          <div class="region">${p.region}</div>
+          <div class="weight">${p.weight}</div>
+          <div class="notes">"${p.notes}"</div>
+        </div>
+      </a>
+    `;
+  }
+  grid.innerHTML = order.map(cardHTML).join('');
+
+  /* Reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  // staggered delay
+  document.querySelectorAll('.p-card').forEach((c, i) => {
+    c.style.transitionDelay = (i % 3) * 0.1 + 's';
+    io.observe(c);
+  });
+
+  /* Filtering */
+  const cards = Array.from(document.querySelectorAll('.p-card'));
+  const pills = Array.from(document.querySelectorAll('.pill'));
+  const countEl = document.getElementById('visibleCount');
+  let active = 'all';
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      active = pill.dataset.filter;
+      let shown = 0;
+      cards.forEach(c => {
+        const tags = c.dataset.tags.split(' ');
+        const match = active === 'all' || tags.includes(active);
+        c.classList.toggle('hidden', !match);
+        if (match) shown++;
+      });
+      countEl.textContent = shown;
+      // empty state
+      let empty = document.getElementById('emptyState');
+      if (shown === 0) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.id = 'emptyState';
+          empty.className = 'empty-state';
+          empty.innerHTML = `<h3>No edition matches that filter.</h3><p>Each season the collection shifts. Try another category or view the full library.</p><button onclick="this.closest('.shop-grid-wrap').querySelectorAll('.pill')[0].click()">View all editions</button>`;
+          grid.appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

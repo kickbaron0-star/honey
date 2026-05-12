@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1110,9 +1111,34 @@ footer {
   </a>
   <div class="nav-right">
     <button class="menu-btn" id="menuBtn"><span class="lines"></span>Menu</button>
-    <a href="product.html" class="nav-acquire">Acquire</a>
+    <a href="shop.html" class="nav-acquire">Shop</a>
+    <button class="nav-cart" id="navCart" aria-label="Open cart">
+      <span class="cart-glyph"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/><path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg></span>
+      Cellar
+      <span class="cart-count">0</span>
+    </button>
   </div>
 </nav>
+
+<!-- Cart drawer -->
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-backdrop"></div>
+  <aside class="cart-panel">
+    <header class="cart-head">
+      <span class="cart-title">Your <em>Cellar</em></span>
+      <button class="cart-close" aria-label="Close">Close <span class="x"></span></button>
+    </header>
+    <div class="cart-items" id="cartItems"></div>
+    <footer class="cart-foot">
+      <div class="cart-totals">
+        <span class="label">Subtotal</span>
+        <span class="total" id="cartTotal">€0</span>
+      </div>
+      <p class="cart-note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>
+      <a href="checkout.html" class="cart-checkout">Continue to checkout <span class="arrow"></span></a>
+    </footer>
+  </aside>
+</div>
 
 <!-- ============ Menu overlay ============ -->
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
@@ -1125,18 +1151,18 @@ footer {
     <ol class="menu-items">
       <li>
         <span class="roman">I</span>
-        <a href="#origin">The <em>Origin</em></a>
-        <span class="sub">Pelion · Greece</span>
+        <a href="shop.html">The <em>Collection</em></a>
+        <span class="sub">All editions</span>
       </li>
       <li>
         <span class="roman">II</span>
-        <a href="#process">The <em>Process</em></a>
-        <span class="sub">Hand harvested</span>
+        <a href="about.html">The <em>Origin</em></a>
+        <span class="sub">Pelion · Greece</span>
       </li>
       <li>
         <span class="roman">III</span>
-        <a href="product.html">The <em>Collection</em></a>
-        <span class="sub">Edition I</span>
+        <a href="#process">The <em>Process</em></a>
+        <span class="sub">Hand harvested</span>
       </li>
       <li>
         <span class="roman">IV</span>
@@ -1145,7 +1171,7 @@ footer {
       </li>
       <li>
         <span class="roman">V</span>
-        <a href="#contact">Contact</a>
+        <a href="contact.html">Contact</a>
         <span class="sub">Trade &amp; press</span>
       </li>
     </ol>
@@ -1231,7 +1257,7 @@ footer {
     <div class="cta-wrap stagger">
       <div class="eyebrow">The collection</div>
       <h2 class="display huge">Taste the origin.</h2>
-      <a class="cta" href="product.html">Discover the collection <span class="arrow"></span></a>
+      <a class="cta" href="shop.html">Discover the collection <span class="arrow"></span></a>
     </div>
   </div>
 
@@ -1311,16 +1337,16 @@ footer {
     <div class="footer-col">
       <h4>Collection</h4>
       <a href="product.html">Chestnut Honey</a>
-      <a href="product.html">Pine &amp; Heather</a>
-      <a href="product.html">Spring Wildflower</a>
-      <a href="product.html">Reserve</a>
+      <a href="shop.html">Pine &amp; Heather</a>
+      <a href="shop.html">Spring Wildflower</a>
+      <a href="shop.html">Reserve</a>
     </div>
     <div class="footer-col">
       <h4>House</h4>
-      <a href="#origin">Origin</a>
+      <a href="about.html">Origin</a>
       <a href="#process">Estate</a>
       <a href="#">Journal</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </div>
     <div class="footer-col">
       <h4>Care</h4>
@@ -1336,6 +1362,7 @@ footer {
   </div>
 </footer>
 
+<script src="shared.js"></script>
 <script>
 (function() {
   const video = document.getElementById('scrollVideo');
