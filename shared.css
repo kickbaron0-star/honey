@@ -607,22 +607,39 @@ body nav.site-nav::after {
 /* Brand wordmark — keep its gold gradient untouched */
 body nav.site-nav .nav-brand { color: inherit; }
 
-/* Menu button + Shop link + Cart button */
+/* Menu button + Cart button */
 body nav.site-nav .menu-btn,
-body nav.site-nav .nav-acquire,
 body nav.site-nav .nav-cart {
   color: var(--hd-nav-gold);
 }
 body nav.site-nav .menu-btn:hover,
-body nav.site-nav .nav-acquire:hover,
 body nav.site-nav .nav-cart:hover { color: var(--hd-nav-gold-bright); }
 body nav.site-nav .menu-btn .lines::before,
 body nav.site-nav .menu-btn .lines::after { background: var(--hd-nav-gold); }
 
-/* Shop link underline + the honey droplet line both ride on currentColor */
+/* Shop link — promoted to the primary nav CTA: brighter champagne,
+   slightly bigger, bolder, and a confidently visible underline. */
+body nav.site-nav .nav-acquire {
+  color: var(--hd-nav-gold-bright);
+  font-size: 10.5px;
+  font-weight: 600;
+  opacity: 1;
+}
+body nav.site-nav .nav-acquire:hover { color: #F4DBA9; }
+body nav.site-nav .nav-acquire .shop-label {
+  color: inherit;
+  display: inline-block;
+}
 body nav.site-nav .nav-acquire.honey-shop .honey-underline::before {
-  background: var(--hd-nav-gold);
-  opacity: 0.82;
+  background: var(--hd-nav-gold-bright);
+  opacity: 1;
+  height: 1.2px;
+  box-shadow: 0 0 6px rgba(236, 206, 147, 0.45);
+}
+/* Fallback static underline so the link reads even before honey-shop JS runs */
+body nav.site-nav .nav-acquire:not(.honey-shop) {
+  border-bottom: 1px solid var(--hd-nav-gold-bright);
+  padding-bottom: 4px;
 }
 
 /* Cart count chip — gold pill on the matte black bar */
