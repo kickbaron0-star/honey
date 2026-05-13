@@ -457,8 +457,7 @@
   background: currentColor;
   display: inline-block;
 }
-nav.site-nav:not(.scrolled) .lang-toggle { color: rgba(245, 239, 228, 0.7); }
-nav.site-nav:not(.scrolled) .lang-toggle button.active { color: var(--cream); }
+/* lang-toggle base color now driven by the matte-black nav rules below */
 @media (max-width: 600px) {
   .lang-toggle { font-size: 9px; letter-spacing: 0.18em; gap: 6px; }
   .lang-toggle button { padding: 6px 2px; }
@@ -570,3 +569,96 @@ footer .logo-mark.footer-size {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   LUXURY MATTE-BLACK NAVIGATION
+   Rich charcoal surface, warm honey-gold typography & accents.
+   Loaded last in shared.css so it wins over per-page nav styles.
+   Selectors use `body nav.site-nav` for specificity.
+   ============================================================ */
+:root {
+  --hd-nav-bg: rgba(14, 11, 8, 0.88);
+  --hd-nav-bg-scrolled: rgba(14, 11, 8, 0.95);
+  --hd-nav-gold: #D4AC6A;
+  --hd-nav-gold-bright: #ECCE93;
+  --hd-nav-gold-soft: rgba(212, 172, 106, 0.55);
+  --hd-nav-gold-line: rgba(184, 148, 90, 0.16);
+}
+
+body nav.site-nav,
+body nav.site-nav.scrolled {
+  background: var(--hd-nav-bg);
+  backdrop-filter: blur(26px) saturate(160%);
+  -webkit-backdrop-filter: blur(26px) saturate(160%);
+  border-bottom: 1px solid var(--hd-nav-gold-line);
+  color: var(--hd-nav-gold);
+  box-shadow:
+    0 1px 0 rgba(212, 172, 106, 0.05),
+    0 28px 80px -40px rgba(180, 130, 60, 0.22);
+  transition: background 0.7s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)), padding 0.7s var(--ease);
+}
+body nav.site-nav.scrolled { background: var(--hd-nav-bg-scrolled); }
+
+/* Soft warm gold reflection line along the bottom edge of the bar */
+body nav.site-nav::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 6%,
+    rgba(220, 178, 110, 0.42) 50%,
+    transparent 94%);
+  pointer-events: none;
+}
+
+/* Brand wordmark — keep its gold gradient untouched */
+body nav.site-nav .nav-brand { color: inherit; }
+
+/* Menu button + Shop link + Cart button */
+body nav.site-nav .menu-btn,
+body nav.site-nav .nav-acquire,
+body nav.site-nav .nav-cart {
+  color: var(--hd-nav-gold);
+}
+body nav.site-nav .menu-btn:hover,
+body nav.site-nav .nav-acquire:hover,
+body nav.site-nav .nav-cart:hover { color: var(--hd-nav-gold-bright); }
+body nav.site-nav .menu-btn .lines::before,
+body nav.site-nav .menu-btn .lines::after { background: var(--hd-nav-gold); }
+
+/* Shop link underline + the honey droplet line both ride on currentColor */
+body nav.site-nav .nav-acquire.honey-shop .honey-underline::before {
+  background: var(--hd-nav-gold);
+  opacity: 0.82;
+}
+
+/* Cart count chip — gold pill on the matte black bar */
+body nav.site-nav .nav-cart .cart-count {
+  background: var(--hd-nav-gold);
+  color: #100D08;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(212, 172, 106, 0.35);
+}
+
+/* Language toggle */
+body nav.site-nav .lang-toggle { color: var(--hd-nav-gold-soft); }
+body nav.site-nav .lang-toggle button { color: inherit; opacity: 1; }
+body nav.site-nav .lang-toggle button:hover { color: rgba(220, 180, 112, 0.9); }
+body nav.site-nav .lang-toggle button.active { color: var(--hd-nav-gold-bright); }
+body nav.site-nav .lang-toggle .sep { background: rgba(212, 172, 106, 0.32); }
+
+/* Checkout-only nav extras */
+body nav.site-nav .checkout-step-indicator .step { color: rgba(212, 172, 106, 0.5); }
+body nav.site-nav .checkout-step-indicator .step.active {
+  color: var(--hd-nav-gold-bright);
+  opacity: 1;
+}
+body nav.site-nav .checkout-step-indicator .sep { background: rgba(212, 172, 106, 0.3); }
+body nav.site-nav .secure-link { color: rgba(212, 172, 106, 0.7); }
+body nav.site-nav .secure-link:hover { color: var(--hd-nav-gold-bright); }
+body nav.site-nav .secure-link::before { border-color: var(--hd-nav-gold); }
+
+/* Make sure the nav logo isn't darkened by the footer-brand filter */
+body nav.site-nav .logo-mark { filter: none; }
