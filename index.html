@@ -769,50 +769,50 @@ section.chapter { padding: 20vh 8%; position: relative; }
 }
 .process-honeycomb {
   position: absolute;
-  top: 50%;
-  right: -22%;
-  width: 78%;
-  max-width: 1100px;
-  aspect-ratio: 3 / 5.5;
-  transform: translateY(-50%);
+  top: 18vh;
+  right: 8%;
+  width: clamp(260px, 30vw, 420px);
+  aspect-ratio: 4 / 5;
   background-image: url('honeycomb.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.55;
+  opacity: 0.72;
   mix-blend-mode: multiply;
-  filter: saturate(0.78) contrast(0.95) brightness(1.04);
-  mask-image:
-    radial-gradient(ellipse 60% 70% at 55% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0) 90%),
-    linear-gradient(90deg, transparent 0%, black 25%, black 100%);
-  -webkit-mask-image:
-    radial-gradient(ellipse 60% 70% at 55% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0) 90%),
-    linear-gradient(90deg, transparent 0%, black 25%, black 100%);
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
+  filter: saturate(0.85) contrast(0.94) brightness(1.03);
+  mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%);
   pointer-events: none;
   z-index: 0;
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 .process-honeycomb::after {
-  /* Outer feather + warm champagne vignette tint */
+  /* Outer feather: warm champagne tint matching the page bg */
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 65% 75% at 55% 50%,
-    transparent 40%,
-    rgba(245, 239, 228, 0.35) 70%,
-    rgba(245, 239, 228, 0.6) 100%);
+  background: radial-gradient(ellipse 70% 78% at 50% 50%,
+    transparent 50%,
+    rgba(245, 239, 228, 0.45) 100%);
   pointer-events: none;
 }
 .chapter.process > * { position: relative; z-index: 1; }
 
+@media (max-width: 1100px) {
+  .process-honeycomb {
+    right: 6%;
+    width: clamp(220px, 28vw, 360px);
+    opacity: 0.6;
+  }
+}
 @media (max-width: 900px) {
   .process-honeycomb {
-    right: -38%;
-    width: 110%;
-    aspect-ratio: 3 / 5;
-    opacity: 0.4;
+    top: auto;
+    bottom: 4vh;
+    right: -10%;
+    width: 55%;
+    max-width: 280px;
+    opacity: 0.35;
   }
 }
 
