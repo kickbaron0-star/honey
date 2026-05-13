@@ -398,7 +398,8 @@
   .nav-cart .cart-count { font-size: 9px; letter-spacing: 0.02em; }
   .nav-cart .cart-glyph svg { width: 16px; height: 16px; }
   .nav-cart .cart-count { min-width: 16px; height: 16px; padding: 0 5px; }
-  nav.site-nav .nav-acquire { display: none; }
+  /* Shop link stays visible on small viewports — just tighter spacing */
+  nav.site-nav .nav-acquire { padding-left: 0; gap: 0; font-size: 9px; }
   .cart-panel { width: 100vw; }
   .cart-head, .cart-foot, .cart-items { padding-left: 22px; padding-right: 22px; }
   .cart-head .cart-title { font-size: 20px; }
